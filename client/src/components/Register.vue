@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import AuthenticationSErvice from '@/services/AuthenticationService'
+import AuthenticationService from '@/services/AuthenticationService'
 export default { 
   data () {
     return {
@@ -20,20 +20,30 @@ export default {
     }
   },
   methods: {
-    async register() {
-      await AuthenticationSErvice.register({
-        email: this.email,
-        password: this.password
-      })
+
+    /*register () {
+      console.log('register button was clicked', this.email, this.password)
+    }*/
+     async register() {
+      
+      try{
+        await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+      } catch(error)
+      {
+        this.error = error.response.data.error
+      }
       //console.log('register button was clicked', this.email, this.password)
       //console.log(response.data)
     }
-  },
- /* watch: {
+  }
+  /*watch: {
     email (value) {
       console.log('email has changed', value)
     }
-  },
+  }/*,
   mounted () {
    setTimeout(() => {
       this.email = 'hello world'
