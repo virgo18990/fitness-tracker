@@ -21,11 +21,35 @@ const usermodel = {
         });    
     },*/
     add(input, cb){
-       /* if(input.Password.length < 8){
+        console.log(input.Password.length);
+        /*if(input.Password.length < 8){
             cb(Error('A longer Password is Required'));
             return;
         }*/
-        conn.query( "INSERT INTO Users (FirstName,LastName,Birthday,Password,Created_At,Updated_At) VALUES (?)",
+
+        conn.query("SELECT * FROM Users WHERE Email=?",input.Email, (err, data) => {
+            if(data.length === 0)
+            {               
+                conn.query( "INSERT INTO Users (FirstName,LastName,Birthday,Password,Email,Created_At,Updated_At) VALUES (?)",
+                        [[input.FirstName, input.LastName, input.Birthday, input.Password,input.Email, new Date(), new Date()]],
+                        (err, data) => {
+                            if(err){
+                                cb(err);
+                                return;
+                            }
+                            usermodel.get(data.insertId, (err, data)=>{
+                                //cb("Record Inserted");
+                                cb(err, data);
+                            })
+                        }
+                );
+            }
+            else{
+                cb(new Error("User Id Exists"));
+            }
+        });
+
+        /*conn.query( "INSERT INTO Users (FirstName,LastName,Birthday,Password,Created_At,Updated_At) VALUES (?)",
                     [[input.FirstName, input.LastName, input.Birthday, input.Password, new Date(), new Date()]],
                     (err, data) => {
                         if(err){
@@ -37,7 +61,7 @@ const usermodel = {
                             cb(err, data);
                         })
                     }
-        );    
+        );*/
     }
 };
 

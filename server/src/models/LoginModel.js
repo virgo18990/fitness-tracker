@@ -15,10 +15,11 @@ const loginmodel = {
     login(input, cb){
         console.log(input.Id);
         console.log(input.Password);
-        conn.query("SELECT * FROM Users WHERE Id=?", input.Id, (err, data) => {
+        console.log(input.Email);
+        conn.query("SELECT * FROM Users WHERE Email=?", input.Email, (err, data) => {
             console.log(data[0].Password);
             if(data[0].Password === input.Password){                
-                conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Id = ?",[new Date,input.Id]);
+                conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Email = ?",[new Date,input.Email]);
                 cb(err, data[0]);
             }else{
                 cb(new Error("Wrong Password"));
