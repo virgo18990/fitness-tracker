@@ -22,9 +22,12 @@ app.get("/:Id", (req,res) => {
 
 app.post("/", (req,res) => {
     UserModel.add(req.body, (err,data) => {
-        if(err) throw err;
+        if(err) throw err;        
         res.send(data);
     });
+
 });
+
+
 
 module.exports = app;

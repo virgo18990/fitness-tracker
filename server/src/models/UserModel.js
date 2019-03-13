@@ -21,10 +21,10 @@ const usermodel = {
         });    
     },*/
     add(input, cb){
-        if(input.Password.length < 8){
+       /* if(input.Password.length < 8){
             cb(Error('A longer Password is Required'));
             return;
-        }
+        }*/
         conn.query( "INSERT INTO Users (FirstName,LastName,Birthday,Password,Created_At,Updated_At) VALUES (?)",
                     [[input.FirstName, input.LastName, input.Birthday, input.Password, new Date(), new Date()]],
                     (err, data) => {
