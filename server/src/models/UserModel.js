@@ -11,8 +11,17 @@ const usermodel = {
             cb(err, data[0]);
         });    
     },
+    /*login(email, password, cb){
+        conn.query("SELECT * FROM Users WHERE Id=?", email, (err, data) => {
+            if(hash(data.Password) == hash(password)){
+                cb(err, data[0]);
+            }else{
+                cb(new Error("Wrong Password"));
+            }
+        });    
+    },*/
     add(input, cb){
-        if(input.Password.length() < 8){
+        if(input.Password.length < 8){
             cb(Error('A longer Password is Required'));
             return;
         }
@@ -23,7 +32,8 @@ const usermodel = {
                             cb(err);
                             return;
                         }
-                        model.get(data.insertId, (err, data)=>{
+                        usermodel.get(data.insertId, (err, data)=>{
+                            //cb("Record Inserted");
                             cb(err, data);
                         })
                     }

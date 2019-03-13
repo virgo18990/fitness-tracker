@@ -1,29 +1,29 @@
-console.log('hello profile controller')
+console.log('hello login controller')
 const express = require('express');
-const ProfileModel = require('../models/ProfileModel');
+const LoginModel = require('../models/LoginModel');
 
 const app = express.Router();
 
-app.get("/", (req,res) => {
-    ProfileModel.getAll((err,data) => {
+/*app.get("/", (req,res) => {
+    LoginModel.getAll((err,data) => {
         if(err) throw err;
         res.send(data);
     });
-});
+});*/
 
 app.get("/:Id", (req,res) => {
 
-    ProfileModel.get(req.params.Id, (err,data) => {
+    LoginModel.get(req.params.Id, (err,data) => {
         if(err) throw err;
         res.send(data);
     });
 });
 
-app.post("/", (req,res) => {
-    ProfileModel.add(req.body, (err,data) => {
+/*app.post("/", (req,res) => {
+    LoginModel.add(req.body, (err,data) => {
         if(err) throw err;
         res.send(data);
     });
-});
+});*/
 
 module.exports = app;

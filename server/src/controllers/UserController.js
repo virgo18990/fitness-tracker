@@ -12,7 +12,8 @@ app.get("/", (req,res) => {
 });
 
 app.get("/:Id", (req,res) => {
-
+    console.log({query: req.query})
+    console.log({params: req.params})
     UserModel.get(req.params.Id, (err,data) => {
         if(err) throw err;
         res.send(data);

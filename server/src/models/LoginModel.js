@@ -1,13 +1,13 @@
 const conn = require('./mysql_connection');
 
-const profilemodel = {
-    getAll(cb){
+const loginmodel = {
+    /*getAll(cb){
         conn.query("SELECT * FROM Profile", (err, data) => {
             cb(err, data);
         });    
-    },
+    },*/
     get(id, cb){
-        conn.query("SELECT * FROM Profile WHERE Id=?", id, (err, data) => {
+        conn.query("SELECT * FROM Login WHERE Id=?", id, (err, data) => {
             cb(err, data[0]);
         });    
     },
@@ -16,19 +16,23 @@ const profilemodel = {
             cb(Error('A longer Password is Required'));
             return;
         }*/
-        conn.query( "INSERT INTO Profile (Age,Weight,Height,Gender,UserId,Created_At,Updated_At) VALUES (?)",
-                    [[input.Age, input.Weight, input.Height, input.Gender, input.UserId, new Date(), new Date()]],
+        
+        //If login id does not exist in Login table and User is present in Users table means a registered user, then insert a new record 
+        conn.query( "INSERT INTO Login (UserId, Password, Last_Logged_In) VALUES (?)",
+                    [[input.UserId, input.Password, new Date()]],
                     (err, data) => {
                         if(err){
                             cb(err);
                             return;
                         }
-                        profilemodel.get(data.insertId, (err, data)=>{
+                        model.get(data.insertId, (err, data)=>{
                             cb(err, data);
                         })
                     }
         );    
+
+        //Else if login id already exist, update the Last_Logged_In time as now()
     }
 };
 
-module.exports = profilemodel;
+module.exports = loginmodel;
