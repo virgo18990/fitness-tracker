@@ -17,7 +17,8 @@ const loginmodel = {
         console.log(input.Password);
         conn.query("SELECT * FROM Users WHERE Id=?", input.Id, (err, data) => {
             console.log(data[0].Password);
-            if(data[0].Password === input.Password){
+            if(data[0].Password === input.Password){                
+                conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Id = ?",[new Date,input.Id]);
                 cb(err, data[0]);
             }else{
                 cb(new Error("Wrong Password"));
