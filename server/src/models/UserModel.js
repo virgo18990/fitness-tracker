@@ -26,8 +26,10 @@ const usermodel = {
     add(input, cb){
       
         const SALT_FACTOR = 8;
-        
+       
         //Adding for hashing password
+        
+        const password = input.Password;
 
         var salt = bcrypt.genSaltSync(SALT_FACTOR);
         var hash = bcrypt.hashSync(password, salt);

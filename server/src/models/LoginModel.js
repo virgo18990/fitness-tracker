@@ -1,5 +1,8 @@
 const conn = require('./mysql_connection');
 
+const Promise = require('bluebird');
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+
 const loginmodel = {
     /*getAll(cb){
         conn.query("SELECT * FROM Profile", (err, data) => {
@@ -13,12 +16,22 @@ const loginmodel = {
     },*/
     
     login(input, cb){
-        console.log(input.Id);
+        //console.log(input.Id);
         console.log(input.Password);
         console.log(input.Email);
+
+        const SALT_FACTOR = 8;
+        const password = input.Password;
+        //Adding for hashing password
+
+        var salt = bcrypt.genSaltSync(SALT_FACTOR);
+        var hash = bcrypt.hashSync(password, salt);
+
         conn.query("SELECT * FROM Users WHERE Email=?", input.Email, (err, data) => {
-            console.log(data[0].Password);
-            if(data[0].Password === input.Password){                
+            console.log(data[0].Password);   
+            console.log(hash);
+               // if(data[0].Password === hash){    
+                if(bcrypt.compareSync(password, hash)){             
                 conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Email = ?",[new Date,input.Email]);
                 cb(err, data[0]);
             }else{
