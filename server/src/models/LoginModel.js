@@ -24,14 +24,16 @@ const loginmodel = {
         const password = input.Password;
         //Adding for hashing password
 
-        var salt = bcrypt.genSaltSync(SALT_FACTOR);
-        var hash = bcrypt.hashSync(password, salt);
+        const salt = bcrypt.genSaltSync(SALT_FACTOR);
+        const hash = bcrypt.hashSync(password, salt);
 
         conn.query("SELECT * FROM Users WHERE Email=?", input.Email, (err, data) => {
+
+        
             console.log(data[0].Password);   
             console.log(hash);
-               // if(data[0].Password === hash){    
-                if(bcrypt.compareSync(password, hash)){             
+            //if(data[0].Password === hash){    
+            if(bcrypt.compareSync(data[0].Password, hash, salt)){             
                 conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Email = ?",[new Date,input.Email]);
                 cb(err, data[0]);
             }else{
