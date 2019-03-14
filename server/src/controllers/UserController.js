@@ -1,6 +1,8 @@
 console.log('hello user controller')
 const express = require('express');
 const UserModel = require('../models/UserModel');
+const jwt = require('jsonwebtoken');
+
 
 const app = express.Router();
 

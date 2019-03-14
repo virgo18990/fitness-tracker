@@ -1,5 +1,8 @@
 const conn = require('./mysql_connection');
 
+const Promise = require('bluebird');
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+
 const usermodel = {
     getAll(cb){
         conn.query("SELECT * FROM Users", (err, data) => {
@@ -21,17 +24,20 @@ const usermodel = {
         });    
     },*/
     add(input, cb){
-        //console.log(input.Password.length);
-        /*if(input.Password.length < 8){
-            cb(Error('A longer Password is Required'));
-            return;
-        }*/
+      
+        const SALT_FACTOR = 8;
+        
+        //Adding for hashing password
+
+        var salt = bcrypt.genSaltSync(SALT_FACTOR);
+        var hash = bcrypt.hashSync(password, salt);
+        
 
         conn.query("SELECT * FROM Users WHERE Email=?",input.Email, (err, data) => {
             if(data.length === 0)
             {               
                 conn.query( "INSERT INTO Users (FirstName,LastName,Birthday,Password,Email,Created_At,Updated_At) VALUES (?)",
-                        [[input.FirstName, input.LastName, input.Birthday, input.Password,input.Email, new Date(), new Date()]],
+                        [[input.FirstName, input.LastName, input.Birthday, hash,input.Email, new Date(), new Date()]],
                         (err, data) => {
                             if(err){
                                 cb(err);
@@ -49,19 +55,6 @@ const usermodel = {
             }
         });
 
-        /*conn.query( "INSERT INTO Users (FirstName,LastName,Birthday,Password,Created_At,Updated_At) VALUES (?)",
-                    [[input.FirstName, input.LastName, input.Birthday, input.Password, new Date(), new Date()]],
-                    (err, data) => {
-                        if(err){
-                            cb(err);
-                            return;
-                        }
-                        usermodel.get(data.insertId, (err, data)=>{
-                            //cb("Record Inserted");
-                            cb(err, data);
-                        })
-                    }
-        );*/
     }
 };
 
