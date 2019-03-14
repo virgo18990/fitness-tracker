@@ -21,7 +21,7 @@ const usermodel = {
         });    
     },*/
     add(input, cb){
-        console.log(input.Password.length);
+        //console.log(input.Password.length);
         /*if(input.Password.length < 8){
             cb(Error('A longer Password is Required'));
             return;

@@ -12,12 +12,18 @@ const profilemodel = {
         });    
     },
     add(input, cb){
-        /*if(input.Password.length() < 8){
-            cb(Error('A longer Password is Required'));
-            return;
-        }*/
-        conn.query( "INSERT INTO Profile (Age,Weight,Height,Gender,UserId,Created_At,Updated_At) VALUES (?)",
-                    [[input.Age, input.Weight, input.Height, input.Gender, input.UserId, new Date(), new Date()]],
+       
+        conn.query("SELECT * FROM Profile WHERE Email=?", input.Email, (err, data) => {
+            //Update only if Profile already exists else create or insert a new Profile
+            if(data.length !== 0){
+                conn.query( "UPDATE Profile SET Age =?,Weight=?,Height=?,Gender=?,Updated_At=? WHERE Email=?",
+                [input.Age, input.Weight, input.Height, input.Gender, new Date(),input.Email]);
+                cb(err, data[0]);
+                
+            }
+            else {
+                conn.query( "INSERT INTO Profile (Age,Weight,Height,Gender,Email,Created_At,Updated_At) VALUES (?)",
+                    [[input.Age, input.Weight, input.Height, input.Gender, input.Email, new Date(), new Date()]],
                     (err, data) => {
                         if(err){
                             cb(err);
@@ -27,8 +33,12 @@ const profilemodel = {
                             cb(err, data);
                         })
                     }
-        );    
+                ); 
+            }
+        });
+
     }
+    
 };
 
 module.exports = profilemodel;
