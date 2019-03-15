@@ -80,16 +80,32 @@ const usermodel = {
 
     changePassword(input,cb)
     {
-        console.log('Inside change password');
+        const SALT_FACTOR = 8;
+        const password = input.Password;
+
+        var salt = bcrypt.genSaltSync(SALT_FACTOR);
+        var hash = bcrypt.hashSync(password, salt);
         conn.query("SELECT * FROM Users WHERE Email=?",input.Email, (err, data) => {
-            console.log('Inside select');
             if(data.length!==0){
-                console.log('Inside change password if');
-                conn.query("UPDATE Users SET Password=?, Updated_At=? WHERE Email=? AND Password=?",[input.NewPassword,new Date(), input.Email,data[0].Password]);
+                conn.query("UPDATE Users SET Password=?, Updated_At=? WHERE Email=?",[hash,new Date(), input.Email]);
                 cb(err, data[0]);
             }
             else{
                 cb(new Error("Could not change password. Try Again!"));
+            }
+        });
+    },
+
+    editUserDetails(input,cb)
+    {
+        conn.query("SELECT * FROM Users WHERE Email=?",input.Email, (err, data) => {
+            if(data.length!==0){
+                conn.query("UPDATE Users SET FirstName=?, LastName=?, Birthday=?, Updated_At=? WHERE Email=?",
+                [input.FirstName,input.LastName, input.Birthday, new Date(), input.Email]);
+                cb(err, data[0]);
+            }
+            else{
+                cb(new Error("Could not edit details. Try Again!"));
             }
         });
     }

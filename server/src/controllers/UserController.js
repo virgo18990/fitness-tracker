@@ -25,7 +25,6 @@ app.get("/:Id", (req,res) => {
 app.post("/Register", (req,res) => {
     
     UserModel.add(req.body, (err,data) => {
-        //if(err) throw err;  
         if(err){
             res.status(400).send({
                 error: 'User Id already exists! Choose another Id.'
@@ -39,7 +38,6 @@ app.post("/Register", (req,res) => {
 app.post("/ChangePassword", (req,res) => {
     
     UserModel.changePassword(req.body, (err,data) => {
-        //if(err) throw err;  
         if(err){
             res.status(400).send({
                 error: 'Error changing the password.Try Again!'
@@ -52,10 +50,20 @@ app.post("/ChangePassword", (req,res) => {
 
 app.post("/Login", (req,res) => {
     UserModel.login(req.body, (err,data) => {
-        //if(err) throw err;
         if(err){
             res.status(400).send({
                 error: 'Either Id or Password is incorrect!'
+            })
+        }
+        res.send(data);
+    });
+});
+
+app.post("/EditUserDetails", (req,res) => {
+    UserModel.editUserDetails(req.body, (err,data) => {
+        if(err){
+            res.status(400).send({
+                error: 'Could not edit user profile. Try Again!'
             })
         }
         res.send(data);
