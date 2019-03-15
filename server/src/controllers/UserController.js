@@ -50,6 +50,18 @@ app.post("/ChangePassword", (req,res) => {
 
 });
 
+app.post("/Login", (req,res) => {
+    UserModel.login(req.body, (err,data) => {
+        //if(err) throw err;
+        if(err){
+            res.status(400).send({
+                error: 'Either Id or Password is incorrect!'
+            })
+        }
+        res.send(data);
+    });
+});
+
 
 
 module.exports = app;

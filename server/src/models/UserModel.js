@@ -14,15 +14,7 @@ const usermodel = {
             cb(err, data[0]);
         });    
     },
-    /*login(email, password, cb){
-        conn.query("SELECT * FROM Users WHERE Id=?", email, (err, data) => {
-            if(hash(data.Password) == hash(password)){
-                cb(err, data[0]);
-            }else{
-                cb(new Error("Wrong Password"));
-            }
-        });    
-    },*/
+
     add(input, cb){
       
         const SALT_FACTOR = 8;
@@ -57,6 +49,33 @@ const usermodel = {
             }
         });
 
+    },
+
+    login(input, cb){
+        //console.log(input.Id);
+        console.log(input.Password);
+        console.log(input.Email);
+
+        const SALT_FACTOR = 8;
+        const password = input.Password;
+        //Adding for hashing password
+
+        const salt = bcrypt.genSaltSync(SALT_FACTOR);
+        const hash = bcrypt.hashSync(password, salt);
+
+        conn.query("SELECT * FROM Users WHERE Email=?", input.Email, (err, data) => {
+
+        
+            console.log(data[0].Password);   
+            console.log(hash);
+            //if(data[0].Password === hash){    
+            if(bcrypt.compareSync(data[0].Password, hash, salt)){             
+                conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Email = ?",[new Date,input.Email]);
+                cb(err, data[0]);
+            }else{
+                cb(new Error("Wrong Password"));
+            }
+        });    
     },
 
     changePassword(input,cb)
