@@ -57,6 +57,22 @@ const usermodel = {
             }
         });
 
+    },
+
+    changePassword(input,cb)
+    {
+        console.log('Inside change password');
+        conn.query("SELECT * FROM Users WHERE Email=?",input.Email, (err, data) => {
+            console.log('Inside select');
+            if(data.length!==0){
+                console.log('Inside change password if');
+                conn.query("UPDATE Users SET Password=?, Updated_At=? WHERE Email=? AND Password=?",[input.NewPassword,new Date(), input.Email,data[0].Password]);
+                cb(err, data[0]);
+            }
+            else{
+                cb(new Error("Could not change password. Try Again!"));
+            }
+        });
     }
 };
 
