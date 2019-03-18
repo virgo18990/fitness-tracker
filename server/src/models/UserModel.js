@@ -1,7 +1,8 @@
 const conn = require('./mysql_connection');
 
 const Promise = require('bluebird');
-const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+//const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+const bcrypt = require('bcrypt-nodejs');
 
 const usermodel = {
     getAll(cb){
@@ -69,8 +70,9 @@ const usermodel = {
             console.log(data[0].Password);   
             console.log(hash);
             //if(data[0].Password === hash){    
-            if(bcrypt.compareSync(data[0].Password, hash, salt)){             
-                conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Email = ?",[new Date,input.Email]);
+            if(bcrypt.compareSync(data[0].Password, hash, salt)){        
+                //if(bcrypt.compareSync(input.Password, data[0].Password)){             
+                conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Email = ?",[new Date(),input.Email]);
                 cb(err, data[0]);
             }else{
                 cb(new Error("Wrong Password"));

@@ -35,6 +35,19 @@ app.post("/", (req,res) => {
 
 });
 
+app.post("/AcceptFriendRequest", (req,res) => {
+    MyFriendsModel.acceptfriendrequest(req.body, (err,data) => {
+        //if(err) throw err;  
+        if(err){
+            res.status(400).send({
+                error: 'Could not accept request. Try Again!'
+            })
+        }      
+        res.send(data);
+    });
+
+});
+
 
 
 module.exports = app;

@@ -12,9 +12,7 @@ const myfriendsmodel = {
         });    
     },
     addfriends(input, cb){
-      console.log('Inside addfriends method')
-        //const password = input.Password;
-
+     
         conn.query("SELECT * FROM Users WHERE Email=?",input.Request_To, (err, data) => {
             //If the searched friend exists in Users, send request and add a record in MyFriends table
             if(data.length !== 0)
@@ -40,7 +38,15 @@ const myfriendsmodel = {
             }
         });
 
-    }
+    },
+    acceptfriendrequest(input, cb){
+       
+        conn.query("UPDATE MyFriends SET Request_Status =?, Request_Updated_At=? WHERE Request_From=? AND Request_To=?",
+        ['Accepted', new Date(), input.Request_From, input.Request_To], (err, data) => {       
+                cb(err, data);           
+        });  
+  
+      }
 };
 
 module.exports = myfriendsmodel;
