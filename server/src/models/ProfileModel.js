@@ -16,14 +16,14 @@ const profilemodel = {
         conn.query("SELECT * FROM Profile WHERE Email=?", input.Email, (err, data) => {
             //Update only if Profile already exists else create or insert a new Profile
             if(data.length !== 0){
-                conn.query( "UPDATE Profile SET Age =?,Weight=?,Height=?,Gender=?,Updated_At=? WHERE Email=?",
-                [input.Age, input.Weight, input.Height, input.Gender, new Date(),input.Email]);
+                conn.query( "UPDATE Profile SET Age =?,Weight=?,Height=?,Gender=?,Updated_At=?,MealType=?,WorkoutType=?,Address=? WHERE Email=?",
+                [input.Age, input.Weight, input.Height, input.Gender, new Date(),input.MealType, input.WorkoutType, input.Address, input.Email]);
                 cb(err, data[0]);
                 
             }
             else {
-                conn.query( "INSERT INTO Profile (Age,Weight,Height,Gender,Email,Created_At,Updated_At) VALUES (?)",
-                    [[input.Age, input.Weight, input.Height, input.Gender, input.Email, new Date(), new Date()]],
+                conn.query( "INSERT INTO Profile (Age,Weight,Height,Gender,Email,Created_At,Updated_At, MealType,WorkoutType,Address) VALUES (?)",
+                    [[input.Age, input.Weight, input.Height, input.Gender, input.Email, new Date(), new Date(),input.MealType, input.WorkoutType, input.Address]],
                     (err, data) => {
                         if(err){
                             cb(err);
