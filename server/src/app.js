@@ -5,6 +5,7 @@ const profilecontroller = require('./controllers/ProfileController');
 const logincontroller = require('./controllers/LoginController');
 const myfriendscontroller = require('./controllers/MyFriendsController');
 const dietchartcontroller = require('./controllers/DietChartController');
+const meatexchangescontroller = require('./controllers/MeatExchangesController');
 
 const app = express();
 const port = 8081;
@@ -17,7 +18,9 @@ app.use('/UserController', usercontroller);
 app.use('/ProfileController', profilecontroller);
 app.use('/LoginController', logincontroller);
 app.use('/MyFriendsController', myfriendscontroller);
-app.use('/DietChartController', dietchartcontroller)
+app.use('/DietChartController', dietchartcontroller);
+app.use('/MeatExchangesController', meatexchangescontroller)
+
 
 
 
