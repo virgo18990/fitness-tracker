@@ -4,6 +4,7 @@ const usercontroller = require('./controllers/UserController');
 const profilecontroller = require('./controllers/ProfileController');
 const logincontroller = require('./controllers/LoginController');
 const myfriendscontroller = require('./controllers/MyFriendsController');
+const dietchartcontroller = require('./controllers/DietChartController');
 
 const app = express();
 const port = 8081;
@@ -15,7 +16,9 @@ app.use(express.json());
 app.use('/UserController', usercontroller);
 app.use('/ProfileController', profilecontroller);
 app.use('/LoginController', logincontroller);
-app.use('/MyFriendsController', myfriendscontroller)
+app.use('/MyFriendsController', myfriendscontroller);
+app.use('/DietChartController', dietchartcontroller)
+
 
 
 
