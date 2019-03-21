@@ -6,6 +6,8 @@ const logincontroller = require('./controllers/LoginController');
 const myfriendscontroller = require('./controllers/MyFriendsController');
 const dietchartcontroller = require('./controllers/DietChartController');
 const meatexchangescontroller = require('./controllers/MeatExchangesController');
+const fruitexchangescontroller = require('./controllers/FruitExchangesController');
+const vegetableexchangescontroller = require('./controllers/VegetableExchangesController');
 
 const app = express();
 const port = 8081;
@@ -19,7 +21,9 @@ app.use('/ProfileController', profilecontroller);
 app.use('/LoginController', logincontroller);
 app.use('/MyFriendsController', myfriendscontroller);
 app.use('/DietChartController', dietchartcontroller);
-app.use('/MeatExchangesController', meatexchangescontroller)
+app.use('/MeatExchangesController', meatexchangescontroller);
+app.use('/FruitExchangesController', fruitexchangescontroller);
+app.use('/VegetableExchangesController', vegetableexchangescontroller)
 
 
 
