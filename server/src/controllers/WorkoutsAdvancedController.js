@@ -19,4 +19,11 @@ app.get("/:Id", (req,res) => {
     });
 });
 
+app.post("/", (req,res) => {
+    WorkoutsAdvancedModel.showWorkoutByBodyPart(req.body, (err,data) => {
+        if(err) throw err;
+        res.send(data);
+    });
+});
+
 module.exports = app;
