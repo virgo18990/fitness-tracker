@@ -19,4 +19,12 @@ app.get("/:Id", (req,res) => {
     });
 });
 
+app.post("/", (req,res) => {
+    WorkoutsBeginnerModel.showWorkoutByBodyPart(req.body, (err,data) => {
+        if(err) throw err;
+        res.send(data);
+    });
+});
+
+
 module.exports = app;
