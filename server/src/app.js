@@ -28,6 +28,7 @@ app.use('/MeatExchangesController', meatexchangescontroller);
 app.use('/FruitExchangesController', fruitexchangescontroller);
 app.use('/VegetableExchangesController', vegetableexchangescontroller);
 app.use('/WorkoutsBeginnerController', workoutsbeginnercontroller);
+app.use('/WorkoutsIntermediateController', workoutsintermediatecontroller);
 app.use('/WorkoutsAdvancedController', workoutsadvancedcontroller)
 
 
