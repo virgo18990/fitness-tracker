@@ -11,6 +11,7 @@ const vegetableexchangescontroller = require('./controllers/VegetableExchangesCo
 const workoutsbeginnercontroller = require('./controllers/WorkoutsBeginnerController');
 const workoutsintermediatecontroller = require('./controllers/WorkoutsIntermediateController');
 const workoutsadvancedcontroller = require('./controllers/WorkoutsAdvancedController');
+const workoutvideoscontroller = require('./controllers/WorkoutVideosController');
 
 const app = express();
 const port = 8081;
@@ -29,7 +30,9 @@ app.use('/FruitExchangesController', fruitexchangescontroller);
 app.use('/VegetableExchangesController', vegetableexchangescontroller);
 app.use('/WorkoutsBeginnerController', workoutsbeginnercontroller);
 app.use('/WorkoutsIntermediateController', workoutsintermediatecontroller);
-app.use('/WorkoutsAdvancedController', workoutsadvancedcontroller)
+app.use('/WorkoutsAdvancedController', workoutsadvancedcontroller);
+app.use('/WorkoutVideosController', workoutvideoscontroller)
+
 
 
 
