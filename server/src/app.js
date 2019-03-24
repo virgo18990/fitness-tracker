@@ -13,6 +13,7 @@ const workoutsintermediatecontroller = require('./controllers/WorkoutsIntermedia
 const workoutsadvancedcontroller = require('./controllers/WorkoutsAdvancedController');
 const workoutvideoscontroller = require('./controllers/WorkoutVideosController');
 const workoutvideoscommentscontroller = require('./controllers/WorkoutVideosCommentsController');
+const sharedvideosscontroller = require('./controllers/SharedVideosController');
 
 const app = express();
 const port = 8081;
@@ -33,7 +34,8 @@ app.use('/WorkoutsBeginnerController', workoutsbeginnercontroller);
 app.use('/WorkoutsIntermediateController', workoutsintermediatecontroller);
 app.use('/WorkoutsAdvancedController', workoutsadvancedcontroller);
 app.use('/WorkoutVideosController', workoutvideoscontroller);
-app.use('/WorkoutVideosCommentsController', workoutvideoscommentscontroller)
+app.use('/WorkoutVideosCommentsController', workoutvideoscommentscontroller);
+app.use('/SharedVideosController', sharedvideosscontroller)
 
 
 
