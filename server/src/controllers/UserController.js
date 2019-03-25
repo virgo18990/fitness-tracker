@@ -48,7 +48,7 @@ app.post("/ChangePassword", (req,res) => {
 
 });
 
-/*app.post("/Login", (req,res) => {
+app.post("/Login", (req,res) => {
     UserModel.login(req.body, (err,data) => {
         if(err){
             res.status(400).send({
@@ -57,14 +57,9 @@ app.post("/ChangePassword", (req,res) => {
         }
         res.send(data);
     });
-});*/
-
-app.post("/login", (req, res) => {
-    UserModel.login(req.body, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
 });
+
+
 
 app.post("/EditUserDetails", (req,res) => {
     UserModel.editUserDetails(req.body, (err,data) => {
