@@ -48,13 +48,20 @@ app.post("/ChangePassword", (req,res) => {
 
 });
 
-app.post("/Login", (req,res) => {
+/*app.post("/Login", (req,res) => {
     UserModel.login(req.body, (err,data) => {
         if(err){
             res.status(400).send({
                 error: 'Either Id or Password is incorrect!'
             })
         }
+        res.send(data);
+    });
+});*/
+
+app.post("/login", (req, res) => {
+    UserModel.login(req.body, (err, data) => {
+        if(err) throw err;
         res.send(data);
     });
 });

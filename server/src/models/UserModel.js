@@ -1,8 +1,8 @@
 const conn = require('./mysql_connection');
 
 const Promise = require('bluebird');
-//const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+//const bcrypt = require('bcrypt-nodejs');
 
 const usermodel = {
     getAll(cb){
@@ -52,7 +52,7 @@ const usermodel = {
 
     },
 
-    login(input, cb){
+    /*login(input, cb){
         //console.log(input.Id);
         console.log(input.Password);
         console.log(input.Email);
@@ -70,12 +70,38 @@ const usermodel = {
             console.log(data[0].Password);   
             console.log(hash);
             //if(data[0].Password === hash){    
-            if(bcrypt.compareSync(data[0].Password, hash, salt)){        
-                //if(bcrypt.compareSync(input.Password, data[0].Password)){             
+            //if(bcrypt.compareSync(data[0].Password, hash, salt)){        
+                // bcrypt.compare(password, data[0].Password).then(x=>{
+                if(bcrypt.compareSync(input.Password, data[0].Password)){      
+                    //if(bcrypt.compare(password, data[0].Password)){
                 conn.query("UPDATE Users SET Last_Logged_In = ? WHERE Email = ?",[new Date(),input.Email]);
                 cb(err, data[0]);
             }else{
                 cb(new Error("Wrong Password"));
+            }
+        });    
+    },*/
+
+    //From github
+
+    login(input, cb){
+        conn.query(`SELECT * FROM Users 
+                    WHERE Email=?`, input.Email, (err, data) => {
+                        console.log(data.length);
+            //if(err) return cb(err);
+            if(data.length == 0){
+                return cb('User Not Found')
+            }else{
+                console.log("Inside login");
+
+              bcrypt.compare(input.Password, data[0].Password).then(x=>{
+                  console.log("Inside bcrypt");
+                    if(x){
+                        return cb(err, data[0]);
+                    }else{
+                        return cb('Wrong Password');
+                    }
+                });
             }
         });    
     },
