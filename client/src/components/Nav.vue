@@ -17,9 +17,7 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/MyFriends">My Friends</router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link class="nav-link disabled" to="#"  active-class="active">Disabled</router-link>
-                </li>
+                
             </ul>
             <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -27,12 +25,18 @@
             </form>
         </div>
     </nav>
+
+    
+        
+
 </template>
 
 <script>
 export default {
+
 }
 </script>
 
 <style>
+
 </style>
