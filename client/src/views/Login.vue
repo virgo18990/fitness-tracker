@@ -20,7 +20,7 @@
     <h1>Meals, Workout and more....</h1>
 
 <form> 
-  
+
   <div class="form-group">
     <label for="Email">Email</label>
     <input type="text" class="form-control" id="Email" aria-describedby="EmailHelp" placeholder="Enter email">
@@ -35,16 +35,14 @@
     <label class="form-check-label" for="exampleCheck1">Keep me signed in</label>
   </div>
 
-<div v-if="!user">
+<div v-if="!Globals.user">
  <button type="submit" class="btn btn-primary btn-space" @click.prevent="login">Login</button>
   <button type="submit" class="btn btn-primary btn-space">Sign Up</button>
 </div>
-<span class="navbar-text" v-if="user">Welcome {{user.name}}</span>
+<span class="navbar-text" v-if="Globals.user">Welcome {{Globals.user.name}}</span>
 
 </form>
 
-
-    
   </div>
 </div>
     
@@ -53,18 +51,18 @@
 
 <script>
 // @ is an alias to /src
-export default {
-  /*name: 'home',
-  components: {
-    
-  }*/
 
-data: ()=>({
-        user: null
+import { login, Globals } from "@/models/api.js";
+
+export default {
+  data: ()=>({
+        //user: null
+        Globals: Globals
     }),
     methods: {
         login(){
-            this.user = { name: "Easwaren" };
+            //this.user = { name: "Easwaren" };
+            login();
         }
     }
 

@@ -48,6 +48,19 @@ app.post("/AcceptFriendRequest", (req,res) => {
 
 });
 
+app.post("/GetFriends", (req,res) => {
+    MyFriendsModel.GetFriends(req.body, (err,data) => {
+        //if(err) throw err;  
+        if(err){
+            res.status(400).send({
+                error: 'Could not retrieve friends. Try Again!'
+            })
+        }      
+        res.send(data);
+    });
+
+});
+
 
 
 module.exports = app;

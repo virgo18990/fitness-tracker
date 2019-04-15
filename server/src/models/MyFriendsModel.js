@@ -11,6 +11,15 @@ const myfriendsmodel = {
             cb(err, data[0]);
         });    
     },
+    GetFriends(input, cb){
+        console.log('Inside GetFriends');
+        
+        //conn.query("SELECT Request_To FROM MyFriends WHERE Request_From=? and Request_Status=?", input.name, 'Accepted', (err, data) => {
+            conn.query("SELECT * FROM MyFriends WHERE Request_From=?",input.Request_From, (err, data) => {
+        console.log(data);
+            cb(err, data);
+        });    
+    },
     addfriends(input, cb){
      
         conn.query("SELECT * FROM Users WHERE Email=?",input.Request_To, (err, data) => {
