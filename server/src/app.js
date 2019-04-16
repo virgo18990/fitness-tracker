@@ -44,7 +44,10 @@ app.use('/WorkoutVideosCommentsController', workoutvideoscommentscontroller);
 app.use('/SharedVideosController', sharedvideosscontroller)
 
 
-
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send({msg: err.message });
+})
 
 
 

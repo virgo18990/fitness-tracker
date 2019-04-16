@@ -6,72 +6,44 @@ const jwt = require('jsonwebtoken');
 
 const app = express.Router();
 
-app.get("/", (req,res) => {
-    UserModel.getAll((err,data) => {
-        if(err) throw err;
-        res.send(data);
-    });
-});
-
-app.get("/:Id", (req,res) => {
-    console.log({query: req.query})
-    console.log({params: req.params})
-    UserModel.get(req.params.Id, (err,data) => {
-        if(err) throw err;
-        res.send(data);
-    });
-});
-
-app.post("/Register", (req,res) => {
-    
-    UserModel.add(req.body, (err,data) => {
-        if(err){
-            res.status(400).send({
-                error: 'User Id already exists! Choose another Id.'
-            })
-        }      
-        res.send(data);
-    });
-
-});
-
-app.post("/ChangePassword", (req,res) => {
-    
-    UserModel.changePassword(req.body, (err,data) => {
-        if(err){
-            res.status(400).send({
-                error: 'Error changing the password.Try Again!'
-            })
-        }      
-        res.send(data);
-    });
-
-});
-
-app.post("/Login", (req,res) => {
-    UserModel.login(req.body, (err,data) => {
-        if(err){
-            res.status(400).send({
-                error: 'Either Id or Password is incorrect!'
-            })
-        }
-        res.send(data);
-    });
+app.get("/", (req, res, next) => {
+    UserModel.getAll()
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
 
+app.get("/:id", (req, res, next) => {
+    UserModel.get(req.params.id)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
 
-app.post("/EditUserDetails", (req,res) => {
-    UserModel.editUserDetails(req.body, (err,data) => {
-        if(err){
-            res.status(400).send({
-                error: 'Could not edit user profile. Try Again!'
-            })
-        }
-        res.send(data);
-    });
+app.post("/Register", (req, res, next) => {
+    UserModel.add(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
 
+app.post("/ChangePassword", (req, res, next) => {
+    UserModel.changePassword(req.body.email, req.body.newPassword)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
+
+app.post("/Login", (req, res, next) => {
+    UserModel.login(req.body.email, req.body.password)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
+
+app.post("/EditUserDetails", (req, res, next) => {
+    UserModel.editUserDetails(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
 
 module.exports = app;
