@@ -39,7 +39,11 @@
  <button type="submit" class="btn btn-primary btn-space" @click.prevent="login">Login</button>
   <button type="submit" class="btn btn-primary btn-space">Sign Up</button>
 </div>
-<span class="navbar-text" v-if="Globals.user">Welcome {{Globals.user.name}}</span>
+<!--<span class="navbar-text" v-if="Globals.user">Welcome {{Globals.user.name}}</span>-->
+
+<div v-if="Globals.user">
+<button type="submit" class="btn btn-primary btn-space" @click="login">Login</button>
+</div>
 
 </form>
 
@@ -53,6 +57,8 @@
 // @ is an alias to /src
 
 import { login, Globals } from "@/models/api.js";
+import toastr from 'toastr';
+import 'toastr/build/toastr.css';
 
 export default {
   data: ()=>({
@@ -62,7 +68,9 @@ export default {
     methods: {
         login(){
             //this.user = { name: "Easwaren" };
-            login();
+            //login();
+
+            toastr.success("You've logged in successfully!");
         }
     }
 

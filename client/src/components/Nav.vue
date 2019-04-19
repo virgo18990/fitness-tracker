@@ -12,11 +12,24 @@
                     <router-link class="nav-link" to="/" active-class="active" exact>Home <span class="sr-only">(current)</span></router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/About" active-class="active">About</router-link>
+                    <router-link class="nav-link" to="/MyFriends">Workouts</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/MyFriends">Meal Plan</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/MyFriends">Track Progress</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/MyFriends">Share</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/MyFriends">My Friends</router-link>
                 </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/About" active-class="active">About</router-link>
+                </li>
+                
                 
             </ul>
             <form class="form-inline mt-2 mt-md-0">
