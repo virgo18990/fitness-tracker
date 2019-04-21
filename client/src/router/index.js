@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
+import Workouts from '../views/Workouts.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
@@ -44,6 +45,11 @@ const router = new Router({
       component: MyFriends
     },
     {
+      path: '/Workouts',
+      name: 'Workouts',
+      component: Workouts
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -56,7 +62,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next)=>{
   //console.log({ to, from });
-  const publicRoutes = ['Home', 'Login'];
+  const publicRoutes = ['Home', 'Login', 'Workouts', 'about'];
   if(!publicRoutes.includes( to.name ) && !Globals.user){
     Globals.redirectRoute = { name: to.name, path: to.path, params: to.params, query: to.query, hash: to.hash  }
     return next('Login');

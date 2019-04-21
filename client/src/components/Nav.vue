@@ -12,7 +12,7 @@
                     <router-link class="nav-link" to="/Home" active-class="active" exact>Home <span class="sr-only">(current)</span></router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/Home">Workouts</router-link>
+                    <router-link class="nav-link" to="/Workouts">Workouts</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/Home">Meal Plan</router-link>
