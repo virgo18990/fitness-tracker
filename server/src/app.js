@@ -15,12 +15,30 @@ const workoutvideoscontroller = require('./controllers/WorkoutVideosController')
 const workoutvideoscommentscontroller = require('./controllers/WorkoutVideosCommentsController');
 const sharedvideosscontroller = require('./controllers/SharedVideosController');
 
+const usermodel     = require('./models/UserModel');
+
 const app = express();
 const port = 8081;
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
+  app.use(express.static(path.join(__dirname, "../../client/dist")));
+
+  app.use(function(req, res, next) {
+    try {
+      const token = (req.headers.authorization || "").split(' ')[1]
+      req.user = usermodel.getFromToken(token);
+    } catch (error) {
+      const openActions = ['POST/usercontroller', 'POST/usercontroller/Login', 'GET/Login', 'GET/MyFriends']
+      //if(!openActions.includes(req.method + req.path)){ // check if login required
+      if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path)){ // check if login required
+        next(Error("Login Required"));
+      }
+    }
     next();
   });
 
@@ -43,10 +61,12 @@ app.use('/WorkoutVideosController', workoutvideoscontroller);
 app.use('/WorkoutVideosCommentsController', workoutvideoscommentscontroller);
 app.use('/SharedVideosController', sharedvideosscontroller)
 
+app.get("*", (req, res)=> res.sendFile(path.join(__dirname, "../../client/dist/index.html")));
 
 app.use(function (err, req, res, next) {
   console.error(err.stack)
-  res.status(500).send({msg: err.message });
+  //res.status(500).send({msg: err.message });
+  res.status(500).send({message: err.message });
 })
 
 

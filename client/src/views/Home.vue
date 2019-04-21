@@ -49,6 +49,94 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+
+  <div>
+    <form> 
+
+  <div class="form-group">
+    <div>
+      <h1> Get started by creating your profile!</h1>
+    </div>
+    <table class="table">
+      
+     
+        <tr>
+          
+          <td>
+            <label for="Age">Age</label>
+    <input type="text" class="form-control" id="Age" placeholder="Enter age">
+    
+          </td>
+          <td>
+            <label for="Weight">Weight</label>
+            <input type="text" class="form-control" id="Weight" placeholder="Enter weight">
+            <small id="WeightHelp" class="form-text text-muted">Enter weight in kg</small>
+          </td>
+        </tr>
+        <tr>
+          
+          <td>
+            <label for="Height">Height</label>
+            <input type="text" class="form-control" id="Height" placeholder="Enter height">
+            <small id="HeightHelp" class="form-text text-muted">Enter height in cms</small>
+          </td>
+          <td>
+            <label for="Level">Level</label>
+            <br>
+             <div class="form-group">
+               
+               <select class="form-control" name="Level" id="Level">
+                 <option>Weight Loss</option>
+                 <option>Build Muscle</option>
+                 <option>Stay Fit</option>
+               </select>
+             </div>
+                
+           </td>
+        </tr>
+
+        <tr> 
+          <td>
+             <label for="MealType">Meal Type</label>
+            <br>
+                <input type="radio" name="Vegetarian" id="Vegetarian" autocomplete="off" checked>
+                <label for="Vegetarian">Vegetarian &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
+             
+                <input type="radio" name="NonVegetarian" id="NonVegetarian" autocomplete="off">
+                <label for="NonVegetarian">Non-Vegetarian</label>
+          </td>
+          <td>
+            <label for="Gender">Gender</label>
+            <br>
+              
+                <input type="radio" name="Male" id="Male" autocomplete="off" checked>
+                <label for="Male">Male &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
+             
+                <input type="radio" name="Female" id="Female" autocomplete="off">
+                <label for="Female">Female</label>
+           </td>
+        </tr>
+        <tr>
+          <td>
+           
+            <label for="Address">Address</label>
+            <input type="text" class="form-control" id="Address" placeholder="Enter address">
+            </td>
+            <td>
+               <br>
+              &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; <button type="submit" class="btn btn-success">Create</button>
+            </td>
+        </tr>
+   
+    </table>
+   
+  </div>
+
+
+</form>
+  </div>
+
+
 </div>
     </div>
     <div class="col-sm-2 sidenav">
@@ -86,15 +174,14 @@ export default {
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 .home{
-  margin-top:852px;
+  margin-top:1100px;
   
 }
 
-
-
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height:748px ;
+    .row.content {height:1000px ;
     margin-right: 10px;
+    background-color: #ffc107;
     
     }
     
@@ -107,7 +194,7 @@ export default {
     
     /* Set black background color, white text and some padding */
     .footer {
-      background-color: #555;
+      background-color:#ffc107;
       color: white;
       padding: 15px;
     }

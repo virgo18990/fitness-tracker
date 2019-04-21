@@ -9,25 +9,25 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                    <router-link class="nav-link" to="/" active-class="active" exact>Home <span class="sr-only">(current)</span></router-link>
+                    <router-link class="nav-link" to="/Home" active-class="active" exact>Home <span class="sr-only">(current)</span></router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/MyFriends">Workouts</router-link>
+                    <router-link class="nav-link" to="/Home">Workouts</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/MyFriends">Meal Plan</router-link>
+                    <router-link class="nav-link" to="/Home">Meal Plan</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/MyFriends">Track Progress</router-link>
+                    <router-link class="nav-link" to="/Home">Track Progress</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/MyFriends">Share</router-link>
+                    <router-link class="nav-link" to="/Home">Share</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/MyFriends">My Friends</router-link>
+                    <router-link class="nav-link" to="/Home">My Friends</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/About" active-class="active">About</router-link>
+                    <router-link class="nav-link" to="/about" active-class="active">About</router-link>
                 </li>
                 
                 

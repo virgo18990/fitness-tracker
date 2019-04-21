@@ -4,7 +4,10 @@ const Promise = require('bluebird');
 
 const bcrypt = require('bcrypt');
 
+const jwt = require('jsonwebtoken');
+
 const SALT_ROUNDS = 8;
+const JWT_SECRET = process.env.JWT_SECRET || 'some long string..';
 
 const usermodel = {
   
@@ -44,7 +47,10 @@ const usermodel = {
 
     },
 
-    
+    getFromToken(token){
+        return jwt.verify(token, JWT_SECRET);
+    },
+
     async login(email, password){
         
         const data = await conn.query("SELECT * FROM Users WHERE Email=?", email);
@@ -56,7 +62,9 @@ const usermodel = {
             const x = bcrypt.compare(password, data[0].Password);
 
             if(x){
-                return data[0];
+                const user = { ...data[0], password: null };
+            return { user, token: jwt.sign(user, JWT_SECRET) };
+                //return data[0];
             }else{
                 throw Error('Wrong Password');
             }
@@ -75,7 +83,8 @@ const usermodel = {
         const hashedPassword = await bcrypt.hash(newPassword, SALT_ROUNDS);
         await conn.query("UPDATE Users SET Password=?, Updated_At=? WHERE Email=?",[hashedPassword, new Date(), email]);
         
-        return { status: "success", msg: "Password Succesfully Changed" };
+        //return { status: "success", msg: "Password Succesfully Changed" };
+        return { status: "success", message: "Password Succesfully Changed" };
 
     },
 

@@ -35,14 +35,17 @@
     <label class="form-check-label" for="exampleCheck1">Keep me signed in</label>
   </div>
 
-<div v-if="!Globals.user">
+<!--<div v-if="!Globals.user">
  <button type="submit" class="btn btn-primary btn-space" @click.prevent="login">Login</button>
   <button type="submit" class="btn btn-primary btn-space">Sign Up</button>
-</div>
+</div>-->
 <!--<span class="navbar-text" v-if="Globals.user">Welcome {{Globals.user.name}}</span>-->
 
-<div v-if="Globals.user">
-<button type="submit" class="btn btn-primary btn-space" @click="login">Login</button>
+<!--<div v-if="Globals.user">-->
+  <div>
+<!--<button type="submit" class="btn btn-primary btn-space" @click="login">Login</button>-->
+
+<button type="submit" class="btn btn-primary" @click="submit">Login</button>
 </div>
 
 </form>
@@ -56,23 +59,43 @@
 <script>
 // @ is an alias to /src
 
-import { login, Globals } from "@/models/api.js";
+import {  Globals } from "@/models/api.js";
+import { Login } from "@/models/users"; //should it be users.js
 import toastr from 'toastr';
-import 'toastr/build/toastr.css';
+//import 'toastr/build/toastr.css';
 
 export default {
   data: ()=>({
         //user: null
-        Globals: Globals
+        Globals: Globals,
+        data: {},
+        newUser: null
     }),
     methods: {
-        login(){
+        /*login(){
             //this.user = { name: "Easwaren" };
             //login();
 
             toastr.success("You've logged in successfully!");
+        }*/
+
+          async submit(){
+            try {
+              const m = await Login(this.data);
+              //this.newUser = m.user;
+              this.$router.push(Globals.redirectRoute)
+              //Globals.user = m.user;
+              //Globals.token = m.token;
+              toastr.success("You've logged in successfully!")
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
         }
     }
 
 }
 </script>
+
+<style>
+</style>
