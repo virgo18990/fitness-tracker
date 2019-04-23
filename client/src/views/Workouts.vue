@@ -4,9 +4,10 @@
         <div class="container-fluid">  
   <div class="row content">
     <div class="col-lg-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+       <h6>Select Body Part</h6>
+      <p><a href="#linkcontent">Legs</a></p>
+      <p><a href="#linkcontent">Chest</a></p>
+      <p><a href="#linkcontent">Arms</a></p>
     </div>
     <div class="col-lg-8 text-left"> 
       
@@ -50,90 +51,9 @@
     </a>
   </div>
 
-  <div>
-    <form> 
-
-  <div class="form-group">
-    <div>
-      <h1> Get started by creating your profile!</h1>
-    </div>
-    <table class="table">
-      
-     
-        <tr>
-          
-          <td>
-            <label for="Age">Age</label>
-    <input type="text" class="form-control" id="Age" placeholder="Enter age">
-    
-          </td>
-          <td>
-            <label for="Weight">Weight</label>
-            <input type="text" class="form-control" id="Weight" placeholder="Enter weight">
-            <small id="WeightHelp" class="form-text text-muted">Enter weight in kg</small>
-          </td>
-        </tr>
-        <tr>
-          
-          <td>
-            <label for="Height">Height</label>
-            <input type="text" class="form-control" id="Height" placeholder="Enter height">
-            <small id="HeightHelp" class="form-text text-muted">Enter height in cms</small>
-          </td>
-          <td>
-            <label for="Level">Level</label>
-            <br>
-             <div class="form-group">
-               
-               <select class="form-control" name="Level" id="Level">
-                 <option>Weight Loss</option>
-                 <option>Build Muscle</option>
-                 <option>Stay Fit</option>
-               </select>
-             </div>
-                
-           </td>
-        </tr>
-
-        <tr> 
-          <td>
-             <label for="MealType">Meal Type</label>
-            <br>
-                <input type="radio" name="Vegetarian" id="Vegetarian" autocomplete="off" checked>
-                <label for="Vegetarian">Vegetarian &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
-             
-                <input type="radio" name="NonVegetarian" id="NonVegetarian" autocomplete="off">
-                <label for="NonVegetarian">Non-Vegetarian</label>
-          </td>
-          <td>
-            <label for="Gender">Gender</label>
-            <br>
-              
-                <input type="radio" name="Male" id="Male" autocomplete="off" checked>
-                <label for="Male">Male &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
-             
-                <input type="radio" name="Female" id="Female" autocomplete="off">
-                <label for="Female">Female</label>
-           </td>
-        </tr>
-        <tr>
-          <td>
-           
-            <label for="Address">Address</label>
-            <input type="text" class="form-control" id="Address" placeholder="Enter address">
-            </td>
-            <td>
-               <br>
-              &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; <button type="submit" class="btn btn-success">Create</button>
-            </td>
-        </tr>
-   
-    </table>
-   
-  </div>
-
-
-</form>
+  <div id="linkcontent">
+      <p> link</p>
+    <slot></slot>
   </div>
 
 
@@ -189,6 +109,7 @@ export default {
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
+      color: black;
       height: 100%;
     }
     

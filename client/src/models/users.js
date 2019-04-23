@@ -6,6 +6,7 @@ export async function GetFriends(){
 }
 
 export async function Login(data){
+    console.log(data);
     const x = await api("UserController/Login", data)
     Globals.user = x.user;
     Globals.token = x.token;

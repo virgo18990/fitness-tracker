@@ -34,7 +34,8 @@ app.post("/ChangePassword", (req, res, next) => {
 
 
 app.post("/Login", (req, res, next) => {
-    UserModel.login(req.body.email, req.body.password)
+    console.log({body: req.body});
+    UserModel.login(req.body.Email, req.body.Password)
     .then(x=>  res.send(x) )
     .catch(next)
 });

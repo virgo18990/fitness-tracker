@@ -51,18 +51,18 @@ const usermodel = {
         return jwt.verify(token, JWT_SECRET);
     },
 
-    async login(email, password){
-        
-        const data = await conn.query("SELECT * FROM Users WHERE Email=?", email);
+    async login(Email, Password){
+        console.log({Email, Password});
+        const data = await conn.query("SELECT * FROM Users WHERE Email=?", Email);
         
         if(data===0){
             throw Error('User Not Found');
         }
         else{
-            const x = bcrypt.compare(password, data[0].Password);
+            const x = bcrypt.compare(Password, data[0].Password);
 
             if(x){
-                const user = { ...data[0], password: null };
+                const user = { ...data[0], Password: null };
             return { user, token: jwt.sign(user, JWT_SECRET) };
                 //return data[0];
             }else{

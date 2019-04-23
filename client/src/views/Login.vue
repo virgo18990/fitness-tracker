@@ -19,16 +19,16 @@
   <div class="content">
     <h1>Meals, Workout and more....</h1>
 
-<form> 
+<form @submit.prevent="submit"> 
 
   <div class="form-group">
     <label for="Email">Email</label>
-    <input type="text" class="form-control" id="Email" aria-describedby="EmailHelp" placeholder="Enter email">
+    <input type="text" class="form-control" id="Email" v-model='data.Email' aria-describedby="EmailHelp" placeholder="Enter email">
     <small id="EmailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="Password">Password</label>
-    <input type="password" class="form-control" id="Password1" placeholder="Password">
+    <input type="password" class="form-control" id="Password" v-model='data.Password' placeholder="Password">
   </div>
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -45,7 +45,7 @@
   <div>
 <!--<button type="submit" class="btn btn-primary btn-space" @click="login">Login</button>-->
 
-<button type="submit" class="btn btn-primary" @click="submit">Login</button>
+<button type="submit" class="btn btn-primary" >Login</button>
 </div>
 
 </form>
@@ -81,9 +81,10 @@ export default {
 
           async submit(){
             try {
+              console.log(this.data);
               const m = await Login(this.data);
               //this.newUser = m.user;
-              this.$router.push(Globals.redirectRoute)
+              this.$router.push(Globals.redirectRoute || { name: 'Home' })
               //Globals.user = m.user;
               //Globals.token = m.token;
               toastr.success("You've logged in successfully!")

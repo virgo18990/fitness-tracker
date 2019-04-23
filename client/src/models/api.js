@@ -5,12 +5,13 @@ export const Globals = {
     errors: [],
     deleteError(i){
         this.errors.splice(i, 1);
-    }
+    },
+    redirectRoute: null
 }
 
-export function Login(){
-    Globals.user = { Email: "john@gmail.com" }
-}
+/*export function Login(){
+    Globals.user = { email: "john@gmail.com" }
+}*/
 
 /*export function api(url){
     return fetch(API_ROOT + url).then(x=> x.json());
