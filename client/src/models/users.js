@@ -12,3 +12,10 @@ export async function Login(data){
     Globals.token = x.token;
     return x;
 }
+
+export async function CreateProfile(data){
+    console.log(data);
+    const x = await api("ProfileController/", data)
+    
+    return x;
+}

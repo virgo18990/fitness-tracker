@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
-import Workouts from '../views/Workouts.vue'
+//import Workouts from '../views/Workouts.vue'
+import Workouts from '../components/Workouts.vue'
+import Legs from '../views/Legs.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
-import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import { Globals } from "@/models/api";
 
@@ -47,7 +48,12 @@ const router = new Router({
     {
       path: '/Workouts',
       name: 'Workouts',
-      component: Workouts
+      component: Workouts,
+      children: [{
+        path: 'Legs',
+        name: 'Legs',
+        component: Legs
+      }]
     },
     {
       path: '/about',

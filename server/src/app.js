@@ -33,8 +33,8 @@ app.use(function(req, res, next) {
       const token = (req.headers.authorization || "").split(' ')[1]
       req.user = usermodel.getFromToken(token);
     } catch (error) {
-      //console.log(usercontroller);
-      const openActions = ['POST/UserController', 'POST/UserController/Login', 'GET/Login', 'GET/MyFriends']
+      console.log({thiserror: error});
+      const openActions = ['POST/UserController', 'POST/UserController/Login', 'GET/Login', 'GET/MyFriends', 'POST/ProfileController', 'GET/ProfileController']
       //if(!openActions.includes(req.method + req.path)){ // check if login required
       if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path)){ // check if login required
         next(Error("Login Required"));

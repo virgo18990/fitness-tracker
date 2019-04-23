@@ -64,12 +64,12 @@
           
           <td>
             <label for="Age">Age</label>
-    <input type="text" class="form-control" id="Age" placeholder="Enter age">
+    <input type="text" class="form-control" id="Age" v-model='data.Age' placeholder="Enter age">
     
           </td>
           <td>
             <label for="Weight">Weight</label>
-            <input type="text" class="form-control" id="Weight" placeholder="Enter weight">
+            <input type="text" class="form-control" id="Weight" v-model='data.Weight' placeholder="Enter weight">
             <small id="WeightHelp" class="form-text text-muted">Enter weight in kg</small>
           </td>
         </tr>
@@ -77,7 +77,7 @@
           
           <td>
             <label for="Height">Height</label>
-            <input type="text" class="form-control" id="Height" placeholder="Enter height">
+            <input type="text" class="form-control" id="Height" v-model='data.Height' placeholder="Enter height">
             <small id="HeightHelp" class="form-text text-muted">Enter height in cms</small>
           </td>
           <td>
@@ -85,7 +85,8 @@
             <br>
              <div class="form-group">
                
-               <select class="form-control" name="Level" id="Level">
+               <select class="form-control" name="Level"  v-model='data.Level'>
+                 <option disabled value="">SELECT</option>
                  <option>Weight Loss</option>
                  <option>Build Muscle</option>
                  <option>Stay Fit</option>
@@ -99,20 +100,20 @@
           <td>
              <label for="MealType">Meal Type</label>
             <br>
-                <input type="radio" name="Vegetarian" id="Vegetarian" autocomplete="off" checked>
+                <input type="radio" name="Vegetarian" id="Vegetarian" v-model='data.Vegetarian' >
                 <label for="Vegetarian">Vegetarian &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
-             
-                <input type="radio" name="NonVegetarian" id="NonVegetarian" autocomplete="off">
+            
+                <input type="radio" name="NonVegetarian" id="NonVegetarian" v-model='data.NonVegetarian' >
                 <label for="NonVegetarian">Non-Vegetarian</label>
           </td>
           <td>
             <label for="Gender">Gender</label>
             <br>
               
-                <input type="radio" name="Male" id="Male" autocomplete="off" checked>
+                <input type="radio" name="Male" id="Male" v-model='data.Gender' autocomplete="off" checked>
                 <label for="Male">Male &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
              
-                <input type="radio" name="Female" id="Female" autocomplete="off">
+                <input type="radio" name="Female" id="Female" v-model='data.Gender' autocomplete="off">
                 <label for="Female">Female</label>
            </td>
         </tr>
@@ -120,11 +121,11 @@
           <td>
            
             <label for="Address">Address</label>
-            <input type="text" class="form-control" id="Address" placeholder="Enter address">
+            <input type="text" class="form-control" id="Address" v-model='data.Address' placeholder="Enter address">
             </td>
             <td>
                <br>
-              &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; <button type="submit" class="btn btn-success">Create</button>
+              &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; <button type="submit" class="btn btn-success" @click.prevent="submit">Create</button>
             </td>
         </tr>
    
@@ -164,7 +165,35 @@ import { bootstrap } from "bootstrap";
 import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
 
+import {  Globals } from "@/models/api.js";
+import { CreateProfile } from "@/models/users";
+import toastr from 'toastr';
+
 export default {
+
+  data: ()=>({
+        //user: null
+        Globals: Globals,
+        data: {},
+        newUser: null
+    }),
+    methods: {
+        
+          async submit(){
+            try {
+              console.log(this.data);
+              const m = await CreateProfile(this.data);
+              //this.newUser = m.user;
+              //this.$router.push(Globals.redirectRoute || { name: 'Home' })
+              //Globals.user = m.user;
+              //Globals.token = m.token;
+              toastr.success("Profile created successfully")
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        }
+    }
 
 }
  </script>
