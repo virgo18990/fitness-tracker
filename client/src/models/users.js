@@ -1,7 +1,7 @@
 import { api, Globals } from "./api";
 
 export async function GetFriends(){
-    const x = await api("MyFriendsController/GetFriends", { Request_From: Globals.user.Email })
+    const x = await api("MyFriendsController/GetFriends", { Email: Globals.user.Email })
     return x;
 }
 
@@ -17,6 +17,7 @@ export async function Login(data){
 export async function CreateProfile(data){
     //console.log({profiledata:data});
     //console.log({GlobalsInCreateProfile: Globals});
+    console.log({userdetails:Globals.user});
     console.log(Globals.user.Email);
     const x = await api("ProfileController/", {data: data, email: Globals.user.Email})
     

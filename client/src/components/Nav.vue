@@ -24,7 +24,7 @@
                     <router-link class="nav-link" to="/Home">Share</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/Home">My Friends</router-link>
+                    <router-link class="nav-link" to="/MyFriends">My Friends</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/about" active-class="active">About</router-link>

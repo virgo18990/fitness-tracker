@@ -48,17 +48,13 @@ app.post("/AcceptFriendRequest", (req,res) => {
 
 });
 
-app.post("/GetFriends", (req,res) => {
-    MyFriendsModel.GetFriends(req.body, (err,data) => {
-        //if(err) throw err;  
-        if(err){
-            res.status(400).send({
-                error: 'Could not retrieve friends. Try Again!'
-            })
-        }      
-        res.send(data);
-    });
 
+
+app.post("/GetFriends", (req, res, next) => {
+    console.log({body: req.body});
+    MyFriendsModel.GetFriends(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
 
