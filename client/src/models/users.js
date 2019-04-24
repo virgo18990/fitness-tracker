@@ -6,7 +6,8 @@ export async function GetFriends(){
 }
 
 export async function Login(data){
-    console.log(data);
+    //console.log({Globals: Globals});
+    //console.log(data);
     const x = await api("UserController/Login", data)
     Globals.user = x.user;
     Globals.token = x.token;
@@ -14,8 +15,10 @@ export async function Login(data){
 }
 
 export async function CreateProfile(data){
-    console.log(data);
-    const x = await api("ProfileController/", data)
+    //console.log({profiledata:data});
+    //console.log({GlobalsInCreateProfile: Globals});
+    console.log(Globals.user.Email);
+    const x = await api("ProfileController/", {data: data, email: Globals.user.Email})
     
     return x;
 }

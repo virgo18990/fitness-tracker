@@ -4,26 +4,23 @@ const ProfileModel = require('../models/ProfileModel');
 
 const app = express.Router();
 
-app.get("/", (req,res) => {
-    ProfileModel.getAll((err,data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+app.get("/", (req, res, next) => {
+    ProfileModel.getAll()
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
-app.get("/:Id", (req,res) => {
-
-    ProfileModel.get(req.params.Id, (err,data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+app.get("/:Id", (req, res, next) => {   
+    ProfileModel.get(req.params.Id)
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
-app.post("/", (req,res) => {
-    ProfileModel.add(req.body, (err,data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+app.post("/", (req, res, next) => {
+    
+    ProfileModel.add(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
 

@@ -1,42 +1,36 @@
 const conn = require('./mysql_connection');
 
 const profilemodel = {
-    getAll(cb){
-        conn.query("SELECT * FROM Profile", (err, data) => {
-            cb(err, data);
-        });    
+   
+    async getAll(){
+        return await conn.query("SELECT * FROM Profile");   
     },
-    get(id, cb){
-        conn.query("SELECT * FROM Profile WHERE Id=?", id, (err, data) => {
-            cb(err, data[0]);
-        });    
-    },
-    add(input, cb){
-       
-        conn.query("SELECT * FROM Profile WHERE Email=?", input.Email, (err, data) => {
-            //Update only if Profile already exists else create or insert a new Profile
-            if(data.length !== 0){
-                conn.query( "UPDATE Profile SET Age =?,Weight=?,Height=?,Gender=?,Updated_At=?,MealType=?,WorkoutType=?,Address=? WHERE Email=?",
-                [input.Age, input.Weight, input.Height, input.Gender, new Date(),input.MealType, input.WorkoutType, input.Address, input.Email]);
-                cb(err, data[0]);
-                
-            }
-            else {
-                conn.query( "INSERT INTO Profile (Age,Weight,Height,Gender,Email,Created_At,Updated_At, MealType,WorkoutType,Address) VALUES (?)",
-                    [[input.Age, input.Weight, input.Height, input.Gender, input.Email, new Date(), new Date(),input.MealType, input.WorkoutType, input.Address]],
-                    (err, data) => {
-                        if(err){
-                            cb(err);
-                            return;
-                        }
-                        profilemodel.get(data.insertId, (err, data)=>{
-                            cb(err, data);
-                        })
-                    }
-                ); 
-            }
-        });
 
+    async get(id){
+        return await conn.query("SELECT * FROM Profile WHERE Id=?", id);    
+    },
+
+    async add(input){
+        /*console.log('Inside add function');
+        console.log({input: input});
+        console.log(input.data.Age);
+        console.log(input.email);*/
+        
+        const data = await conn.query("SELECT * FROM Profile WHERE Email=?",input.email);
+        console.log({data: data});
+
+        //Update only if Profile already exists else create or insert a new Profile
+        if(data.length !== 0){
+            const x = await conn.query("UPDATE Profile SET Age =?,Weight=?,Height=?,Gender=?,Updated_At=?,MealType=?,Level=?,Address=? WHERE Email=?",
+            [input.data.Age, input.data.Weight, input.data.Height, input.data.Gender, new Date(),input.data.MealType, input.data.Level, input.data.Address, input.email]);
+
+            return { status: "success", msg: "Profile updated successfully!" };
+        }else {
+            const x = await conn.query("INSERT INTO Profile (Age,Weight,Height,Gender,Email,Created_At,Updated_At, MealType,Level,Address) VALUES (?)",
+            [[input.data.Age, input.data.Weight, input.data.Height, input.data.Gender, input.email, new Date(), new Date(),input.data.MealType, input.data.Level, input.data.Address]]);
+
+            return { status: "success", msg: "Profile created successfully!" };
+        }
     }
     
 };

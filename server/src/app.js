@@ -33,8 +33,8 @@ app.use(function(req, res, next) {
       const token = (req.headers.authorization || "").split(' ')[1]
       req.user = usermodel.getFromToken(token);
     } catch (error) {
-      console.log({thiserror: error});
-      const openActions = ['POST/UserController', 'POST/UserController/Login', 'GET/Login', 'GET/MyFriends', 'POST/ProfileController', 'GET/ProfileController']
+      //console.log({thiserror: error});
+      const openActions = ['POST/UserController', 'POST/UserController/Login', 'GET/Login', 'GET/MyFriends', 'GET/ProfileController', 'POST/ProfileController']
       //if(!openActions.includes(req.method + req.path)){ // check if login required
       if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path)){ // check if login required
         next(Error("Login Required"));
@@ -42,7 +42,7 @@ app.use(function(req, res, next) {
     }
     next();
   });
-
+ 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 //app.use(express.static(path.join(__dirname, "../NoFramework")));

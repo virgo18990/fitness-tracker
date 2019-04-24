@@ -69,7 +69,8 @@
           </td>
           <td>
             <label for="Weight">Weight</label>
-            <input type="text" class="form-control" id="Weight" v-model='data.Weight' placeholder="Enter weight">
+           
+            <input type="text" class="form-control" id="Weight"  v-model='data.Weight' placeholder="Enter weight">
             <small id="WeightHelp" class="form-text text-muted">Enter weight in kg</small>
           </td>
         </tr>
@@ -100,20 +101,20 @@
           <td>
              <label for="MealType">Meal Type</label>
             <br>
-                <input type="radio" name="Vegetarian" id="Vegetarian" v-model='data.Vegetarian' >
+                <input type="radio" name="Vegetarian" id="Vegetarian" v-model='data.MealType' value="Vegetarian" checked>
                 <label for="Vegetarian">Vegetarian &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
             
-                <input type="radio" name="NonVegetarian" id="NonVegetarian" v-model='data.NonVegetarian' >
+                <input type="radio" name="NonVegetarian" id="NonVegetarian" v-model='data.MealType' value="NonVegetarian">
                 <label for="NonVegetarian">Non-Vegetarian</label>
           </td>
           <td>
             <label for="Gender">Gender</label>
             <br>
               
-                <input type="radio" name="Male" id="Male" v-model='data.Gender' autocomplete="off" checked>
+                <input type="radio" name="Male" id="Male" v-model='data.Gender'  value="Male" checked>
                 <label for="Male">Male &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
              
-                <input type="radio" name="Female" id="Female" v-model='data.Gender' autocomplete="off">
+                <input type="radio" name="Female" id="Female" v-model='data.Gender' value="Female">
                 <label for="Female">Female</label>
            </td>
         </tr>
@@ -168,6 +169,7 @@ import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
 import {  Globals } from "@/models/api.js";
 import { CreateProfile } from "@/models/users";
 import toastr from 'toastr';
+//import 'toastr/build/toastr.css';
 
 export default {
 
