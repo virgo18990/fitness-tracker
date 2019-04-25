@@ -31,6 +31,12 @@ app.post("/AcceptFriendRequest", (req, res, next) => {
     .catch(next)
 });
 
+app.post("/RejectFriendRequest", (req, res, next) => {
+    MyFriendsModel.rejectfriendrequest(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
 app.post("/GetFriends", (req, res, next) => {
     MyFriendsModel.GetFriends(req.body)
     .then(x=>  res.send(x) )
@@ -39,6 +45,12 @@ app.post("/GetFriends", (req, res, next) => {
 
 app.post("/PendingRequests", (req, res, next) => {
     MyFriendsModel.pendingrequests(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
+app.post("/SearchFriend", (req, res, next) => {
+    MyFriendsModel.searchfriend(req.body)
     .then(x=>  res.send(x) )
     .catch(next)
 });

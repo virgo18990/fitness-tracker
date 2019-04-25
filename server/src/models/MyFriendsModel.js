@@ -12,6 +12,7 @@ const myfriendsmodel = {
 
     async GetFriends(input){
         console.log(input.Email);
+        //This query fetches the accepted requests sent by user and also received by user; hence using UNION
         return await conn.query("select distinct u.FirstName, u.LastName from Users u inner join MyFriends m"
         +" on m.Request_From = u.Email where m.Request_Status ='Accepted' and m.Request_To=?"
         +" UNION"
@@ -39,17 +40,35 @@ const myfriendsmodel = {
    
       async acceptfriendrequest(input){
 
+        console.log({input: input});
         const data = await conn.query("UPDATE MyFriends SET Request_Status =?, Request_Updated_At=? WHERE Request_From=? AND Request_To=?",
-        ['Accepted', new Date(), input.Request_From, input.Request_To]);
+        ['Accepted', new Date(), input.Request_From, input.Email]);
 
         return { status: "success", msg: "Request Accepted" };
       },
 
+      async rejectfriendrequest(input){
+
+        console.log({input: input});
+        const data = await conn.query("DELETE FROM MyFriends WHERE Request_From=? AND Request_To=?",
+        [input.Request_From, input.Email]);
+
+        return { status: "success", msg: "Request Rejected" };
+      },
+
       async pendingrequests(input){
 
-        return await conn.query("select u.FirstName, u.LastName FROM saxenap1_db.Users u inner join saxenap1_db.MyFriends m"
+        return await conn.query("select u.FirstName, u.LastName, u.Email FROM saxenap1_db.Users u inner join saxenap1_db.MyFriends m"
         +" on m.Request_From = u.Email"
         +" where m.Request_To=? and m.Request_Status='New'", input.Email);
+        
+      },
+
+      async searchfriend(input){
+        console.log(input);
+        return await conn.query("select u.FirstName, u.LastName FROM saxenap1_db.Users u inner join saxenap1_db.MyFriends m"
+        +" on m.Request_From = u.Email"
+        +" where m.Request_To=? and m.Request_Status='New'", input.data.Search);
         
       }
 };

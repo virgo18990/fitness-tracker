@@ -10,6 +10,21 @@ export async function PendingRequests(){
     return x;
 }
 
+export async function AcceptFriendRequest(Request_From){
+    const x = await api("MyFriendsController/AcceptFriendRequest", { Request_From: Request_From, Email: Globals.user.Email })
+    return x;
+}
+
+export async function RejectFriendRequest(Request_From){
+    const x = await api("MyFriendsController/RejectFriendRequest", { Request_From: Request_From, Email: Globals.user.Email })
+    return x;
+}
+
+export async function SearchFriend(data){
+    const x = await api("MyFriendsController/SearchFriend", {data})
+    return x;
+}
+
 export async function Login(data){
     //console.log({Globals: Globals});
     //console.log(data);

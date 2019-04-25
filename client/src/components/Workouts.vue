@@ -5,6 +5,8 @@
   <div class="row content">
     <div class="col-lg-2 sidenav">
        <h6>Select Body Part</h6>
+
+       <router-view name="type"/>
      <ul>
        <li> <router-link to="/">Abs</router-link></li>
        <li> <router-link to="/">Arms</router-link></li>
@@ -15,6 +17,7 @@
        <li> <router-link to="/Workouts/Legs">Legs</router-link></li>
        <li> <router-link to="/">Shoulders & Lat</router-link></li>
      </ul>
+      
       
     </div>
     <div class="col-lg-8 text-left"> 
@@ -61,7 +64,7 @@
 
   <div>
       <h1> This is Workouts component </h1>
-    <slot></slot>
+      <router-view name="type"/>
   </div>
 
 

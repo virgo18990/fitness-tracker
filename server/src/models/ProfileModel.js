@@ -15,7 +15,6 @@ const profilemodel = {
         console.log({input: input});
         console.log(input.data.Age);
         console.log(input.email);*/
-        
         const data = await conn.query("SELECT * FROM Profile WHERE Email=?",input.email);
         console.log({data: data});
 

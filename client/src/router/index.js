@@ -51,7 +51,7 @@ const router = new Router({
       component: Workouts,
       children: [{
         path: 'Legs',
-        name: 'Legs',
+        name: 'type',
         component: Legs
       }]
     },

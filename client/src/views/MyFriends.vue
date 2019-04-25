@@ -7,8 +7,12 @@
        <h6>Add/Remove Friends</h6>
         <br/>
 
-       <h6> <router-link to="/">Add Friend</router-link></h6>
-       <h6> <router-link to="/">Remove Friend</router-link></h6>
+       <div>
+           <input for="Search" type="text" class="form-control" id="Search" name="Search" v-model='data.Search' placeholder="Search">
+           <br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary" @click.prevent="search">Search</button>
+       </div>
+       
      
       
     </div>
@@ -25,22 +29,22 @@
       <div class="carousel-item active">
         <img src="../assets/home1.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h5></h5>
+          <p></p>
         </div>
       </div>
       <div class="carousel-item">
         <img src="../assets/home3.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h5></h5>
+          <p></p>
         </div>
       </div>
       <div class="carousel-item">
         <img src="../assets/home4.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <h5></h5>
+          <p></p>
         </div>
       </div>
     </div>
@@ -77,23 +81,23 @@
           <h6>Pending Requests</h6><br/>
        <v-expansion-panel>
     <v-expansion-panel-content
-      v-for="friend in pendingrequests" :key="friend.Request_From"
+      v-for="friend in pendingrequests" :key="friend.Email"
       expand-icon="mdi-menu-down"
     >
       <template v-slot:header>
         <div>{{friend.FirstName}} {{friend.LastName}}</div>
       </template>
-      <v-card>
+      <v-card >
         <v-card-text class="grey lighten-3">
-            <button type="submit" class="btn btn-primary">Accept</button><br/><br/>
-            <button type="submit" class="btn btn-primary">Delete</button>
+            <button type="submit" class="btn btn-primary" @click.prevent="submit(friend.Email)">Accept</button><br/><br/>
+            <button type="submit" class="btn btn-primary" @click.prevent="reject(friend.Email)">Reject</button>
         </v-card-text>
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -107,17 +111,51 @@ import { bootstrap } from "bootstrap";
 import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
 import { Globals } from "@/models/api.js";
-import { GetFriends, PendingRequests } from "@/models/users.js";
+import { GetFriends, PendingRequests, AcceptFriendRequest, RejectFriendRequest, SearchFriend } from "@/models/users.js";
+import toastr from 'toastr';
 
 export default {
     data: ()=> ({
         Globals: Globals,
         friends: [],
+        data: {},
         pendingrequests: []
     }),
     async mounted(){
         this.friends = await GetFriends();
         this.pendingrequests = await PendingRequests();
+    },
+     methods: {
+        
+          async submit(Email){
+            try {
+              const m = await AcceptFriendRequest(Email); 
+              toastr.success("Request Accepted!")
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        },
+
+        async reject(Email){
+            try {
+              const m = await RejectFriendRequest(Email); 
+              toastr.success("Request Rejected!")
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        },
+
+        async search(){
+            try {//Yet to finish
+              console.log(this.data);
+              const m = await SearchFriend(this.data);
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        }
     }
 }
  </script>
