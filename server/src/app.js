@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
       req.user = usermodel.getFromToken(token);
     } catch (error) {
       //console.log({thiserror: error});
-      const openActions = ['POST/UserController', 'POST/UserController/Login', 'GET/Login', 'GET/MyFriends', 'GET/ProfileController', 'POST/ProfileController', 'GET/MyFriendsController', 'POST/MyFriendsController/GetFriends', 'POST/MyFriendsController', 'POST/MyFriendsController/AcceptFriendRequest', 'POST/MyFriendsController/PendingRequests']
+      const openActions = ['POST/UserController', 'POST/UserController/Login', 'GET/Login', 'GET/MyFriends', 'GET/ProfileController', 'POST/ProfileController', 'GET/MyFriendsController', 'POST/MyFriendsController/GetFriends', 'POST/MyFriendsController', 'POST/MyFriendsController/AcceptFriendRequest', 'POST/MyFriendsController/PendingRequests', 'POST/MyFriendsController/SearchFriend']
       //if(!openActions.includes(req.method + req.path)){ // check if login required
       if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path)){ // check if login required
         next(Error("Login Required"));
