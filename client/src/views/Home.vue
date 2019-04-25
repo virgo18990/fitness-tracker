@@ -205,7 +205,7 @@ export default {
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 .home{
-  margin-top:1100px;
+  margin-top:1000px;
   
 }
 

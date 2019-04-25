@@ -1,25 +1,14 @@
 const conn = require('./mysql_connection');
 
 const myfriendsmodel = {
-    getAll(cb){
-        conn.query("SELECT * FROM MyFriends", (err, data) => {
-            cb(err, data);
-        });    
+    
+    async getAll(){
+        return await conn.query("SELECT * FROM MyFriends");   
     },
-    get(id, cb){
-        conn.query("SELECT * FROM MyFriends WHERE Id=?", id, (err, data) => {
-            cb(err, data[0]);
-        });    
+
+    async get(id){
+        return await conn.query("SELECT * FROM MyFriends WHERE Id=?", id);    
     },
-    /*GetFriends(input, cb){
-        console.log('Inside GetFriends');
-        
-        //conn.query("SELECT Request_To FROM MyFriends WHERE Request_From=? and Request_Status=?", input.name, 'Accepted', (err, data) => {
-            conn.query("SELECT * FROM MyFriends WHERE Request_From=?",input.Request_From, (err, data) => {
-        console.log(data);
-            cb(err, data);
-        });    
-    },*/
 
     async GetFriends(input){
         console.log(input.Email);
@@ -31,41 +20,37 @@ const myfriendsmodel = {
         
     },
 
-    addfriends(input, cb){
-     
-        conn.query("SELECT * FROM Users WHERE Email=?",input.Request_To, (err, data) => {
-            //If the searched friend exists in Users, send request and add a record in MyFriends table
-            if(data.length !== 0)
-            {               
-                //Assuming that the user uses a search option to search a friend and then send request
-                conn.query( "INSERT INTO MyFriends (Request_From,Request_To,Request_Created_At,Request_Updated_At,Request_Status) VALUES (?)",
-                        [[input.Request_From, input.Request_To, new Date(), new Date(), 'New']],
-                        (err, data) => {
-                            if(err){
-                                cb(err);
-                                return;
-                            }
-                            myfriendsmodel.get(data.insertId, (err, data)=>{
-                                //cb("Record Inserted");
-                                cb(err, data);
-                            })
-                        }
-                );
-            }
-            else{
-               // cb(new Error("User Id Exists"));
-               console.log('Record cannot be inserted');
-            }
-        });
+    async addfriends(input){
+
+        const data = await conn.query("SELECT * FROM Users WHERE Email=?",input.Request_To);
+
+         //If the searched friend exists in Users, send request and add a record in MyFriends table
+         if(data.length !== 0){
+             const x = await conn.query("INSERT INTO MyFriends (Request_From,Request_To,Request_Created_At,Request_Updated_At,Request_Status) VALUES (?)",
+             [[input.Request_From, input.Request_To, new Date(), new Date(), 'New']]);
+
+             return { status: "success", msg: "Request Sent" };
+         }
+         else{
+            throw Error('Request could not be sent. Try Again!');
+        }
 
     },
-    acceptfriendrequest(input, cb){
-       
-        conn.query("UPDATE MyFriends SET Request_Status =?, Request_Updated_At=? WHERE Request_From=? AND Request_To=?",
-        ['Accepted', new Date(), input.Request_From, input.Request_To], (err, data) => {       
-                cb(err, data);           
-        });  
-  
+   
+      async acceptfriendrequest(input){
+
+        const data = await conn.query("UPDATE MyFriends SET Request_Status =?, Request_Updated_At=? WHERE Request_From=? AND Request_To=?",
+        ['Accepted', new Date(), input.Request_From, input.Request_To]);
+
+        return { status: "success", msg: "Request Accepted" };
+      },
+
+      async pendingrequests(input){
+
+        return await conn.query("select u.FirstName, u.LastName FROM saxenap1_db.Users u inner join saxenap1_db.MyFriends m"
+        +" on m.Request_From = u.Email"
+        +" where m.Request_To=? and m.Request_Status='New'", input.Email);
+        
       }
 };
 

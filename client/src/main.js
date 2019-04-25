@@ -7,6 +7,8 @@ import router from './router'
 import '../node_modules/bootstrap/scss/bootstrap.scss'
 //import '/assets/main.scss';
 import './assets/main.scss'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 Vue.config.productionTip = false
 
@@ -17,6 +19,9 @@ Vue.config.productionTip = false
   components: { App },
   template: '<App/>'
 })*/
+
+Vue.use(Vuetify);
+
 
 new Vue({
 

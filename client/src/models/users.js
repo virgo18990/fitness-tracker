@@ -5,6 +5,11 @@ export async function GetFriends(){
     return x;
 }
 
+export async function PendingRequests(){
+    const x = await api("MyFriendsController/PendingRequests", { Email: Globals.user.Email })
+    return x;
+}
+
 export async function Login(data){
     //console.log({Globals: Globals});
     //console.log(data);

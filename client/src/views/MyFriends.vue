@@ -74,7 +74,23 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+          <h6>Pending Requests</h6><br/>
+       <v-expansion-panel>
+    <v-expansion-panel-content
+      v-for="friend in pendingrequests" :key="friend.Request_From"
+      expand-icon="mdi-menu-down"
+    >
+      <template v-slot:header>
+        <div>{{friend.FirstName}} {{friend.LastName}}</div>
+      </template>
+      <v-card>
+        <v-card-text class="grey lighten-3">
+            <button type="submit" class="btn btn-primary">Accept</button><br/><br/>
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </v-card-text>
+      </v-card>
+    </v-expansion-panel-content>
+  </v-expansion-panel>
       </div>
       <div class="well">
         <p>ADS</p>
@@ -91,15 +107,17 @@ import { bootstrap } from "bootstrap";
 import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
 import { Globals } from "@/models/api.js";
-import { GetFriends } from "@/models/users.js";
+import { GetFriends, PendingRequests } from "@/models/users.js";
 
 export default {
     data: ()=> ({
         Globals: Globals,
-        friends: []
+        friends: [],
+        pendingrequests: []
     }),
     async mounted(){
         this.friends = await GetFriends();
+        this.pendingrequests = await PendingRequests();
     }
 }
  </script>
@@ -109,7 +127,7 @@ export default {
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 .home{
-  margin-top:1100px;
+  margin-top:1000px;
   
 }
 
