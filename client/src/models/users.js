@@ -20,8 +20,8 @@ export async function RejectFriendRequest(Request_From){
     return x;
 }
 
-export async function SearchFriend(data){
-    const x = await api("MyFriendsController/SearchFriend", {data})
+export async function SearchFriend(searchemail){
+    const x = await api("MyFriendsController/SearchFriend", {searchemail})
     return x;
 }
 

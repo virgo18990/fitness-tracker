@@ -10,8 +10,29 @@
        <div>
            <input for="Search" type="text" class="form-control" id="Search" name="Search" v-model='data.Search' placeholder="Search">
            <br/>
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary" @click.prevent="search">Search</button>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary" @click.prevent="search(data.Search)">Search</button>
+           <br/>
        </div>
+        <br/>
+        <div class="well">
+          
+       <v-expansion-panel v-if="!isHidden">
+        <v-expansion-panel-content
+        v-for="friend in searchresults" :key="friend.Email"
+        expand-icon="mdi-menu-down"
+        >
+            <template v-slot:header>
+                <div>{{friend.FirstName}} {{friend.LastName}}</div>
+            </template>
+      <v-card >
+        <v-card-text class="grey lighten-3">
+            <button type="submit" class="btn btn-primary" @click.prevent="submit(friend.Email)">Send Request</button>
+            
+        </v-card-text>
+      </v-card>
+    </v-expansion-panel-content>
+  </v-expansion-panel>
+      </div>
        
      
       
@@ -115,11 +136,14 @@ import { GetFriends, PendingRequests, AcceptFriendRequest, RejectFriendRequest, 
 import toastr from 'toastr';
 
 export default {
+    
     data: ()=> ({
         Globals: Globals,
         friends: [],
         data: {},
-        pendingrequests: []
+        pendingrequests: [],
+        searchresults: [],
+        isHidden : true
     }),
     async mounted(){
         this.friends = await GetFriends();
@@ -147,10 +171,23 @@ export default {
             }
         },
 
-        async search(){
+        async search(searchemail){
             try {//Yet to finish
-              console.log(this.data);
-              const m = await SearchFriend(this.data);
+
+                
+              //console.log({searchemail: searchemail});--Testing
+              const m = await SearchFriend(searchemail);
+              //console.log({m:m});--Testing
+              //console.log({pendingrequests: this.pendingrequests})--Testing
+              this.searchresults= m;
+              //console.log({searchresults:this.searchresults[0].Email});--Testing
+             
+             if(this.searchresults[0].Email !== '')
+             {
+                 this.isHidden = false;
+             }
+            //console.log({isHidden:this.isHidden})--Testing
+              toastr.success("Found!")
             } catch (error) {
               Globals.errors.push(error);
               toastr.error(error.message);
