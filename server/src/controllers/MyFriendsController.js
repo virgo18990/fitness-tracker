@@ -55,6 +55,12 @@ app.post("/SearchFriend", (req, res, next) => {
     .catch(next)
 });
 
+app.post("/RemoveFriend", (req, res, next) => {
+    MyFriendsModel.removefriend(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
 
 
 

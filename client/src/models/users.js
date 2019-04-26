@@ -25,6 +25,16 @@ export async function SearchFriend(searchemail){
     return x;
 }
 
+export async function SendRequest(Request_From, Request_To){
+    const x = await api("MyFriendsController/", {Request_From, Request_To})
+    return x;
+}
+
+export async function RemoveFriend(Email, FriendEmail){
+    const x = await api("MyFriendsController/RemoveFriend", {Email:Email, FriendEmail: FriendEmail})
+    return x;
+}
+
 export async function Login(data){
     //console.log({Globals: Globals});
     //console.log(data);

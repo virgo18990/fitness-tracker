@@ -13,10 +13,10 @@ const myfriendsmodel = {
     async GetFriends(input){
         console.log(input.Email);
         //This query fetches the accepted requests sent by user and also received by user; hence using UNION
-        return await conn.query("select distinct u.FirstName, u.LastName from Users u inner join MyFriends m"
+        return await conn.query("select distinct u.FirstName, u.LastName, u.Email from Users u inner join MyFriends m"
         +" on m.Request_From = u.Email where m.Request_Status ='Accepted' and m.Request_To=?"
         +" UNION"
-        +" select distinct u.FirstName, u.LastName from Users u inner join MyFriends m"
+        +" select distinct u.FirstName, u.LastName, u.Email from Users u inner join MyFriends m"
         +" on m.Request_To = u.Email where m.Request_Status ='Accepted' and m.Request_From=?", [input.Email, input.Email]);
         
     },
@@ -74,7 +74,16 @@ const myfriendsmodel = {
         +" UNION"
         +" select distinct m.Request_To from saxenap1_db.MyFriends m)" , input.searchemail);
         
-      }
+      },
+
+      async removefriend(input){
+
+        console.log({allinput: input});
+        const data = await conn.query("DELETE FROM MyFriends WHERE (Request_From=? and Request_To=?) "
+        +" or (Request_From=? and Request_To=?)", [input.Email, input.FriendEmail, input.FriendEmail, input.Email]);
+
+        return { status: "success", msg: "Friend Removed" };
+      },
 };
 
 module.exports = myfriendsmodel;

@@ -4,7 +4,7 @@
         <div class="container-fluid">  
   <div class="row content">
     <div class="col-lg-2 sidenav">
-       <h6>Add/Remove Friends</h6>
+       <h6>Add Friends</h6>
         <br/>
 
        <div>
@@ -26,7 +26,7 @@
             </template>
       <v-card >
         <v-card-text class="grey lighten-3">
-            <button type="submit" class="btn btn-primary" @click.prevent="submit(friend.Email)">Send Request</button>
+            <button type="submit" class="btn btn-primary" @click.prevent="sendrequest(friend.Email)">Send Request</button>
             
         </v-card-text>
       </v-card>
@@ -84,14 +84,31 @@
       
       <h2 class= "text-md-center" v-if="Globals.user"> <i class="fas fa-align-center">Friends of {{Globals.user.FirstName}} {{Globals.user.LastName}}</i></h2>
 
-    <h3 class= "text-sm-left"> 
+        <v-expansion-panel>
+    <v-expansion-panel-content
+      v-for="friend in friends" :key="friend.Request_From"
+      expand-icon="mdi-menu-down"
+    >
+      <template v-slot:header>
+        <div>{{friend.FirstName}} {{friend.LastName}}</div>
+      </template>
+      <v-card >
+        <v-card-text class="grey lighten-3">
+            <button type="submit" class="btn btn-primary" @click.prevent="removefriend(friend.Email)">Remove</button><br/><br/>
+            
+        </v-card-text>
+      </v-card>
+    </v-expansion-panel-content>
+  </v-expansion-panel>
+
+    <!--<h3 class= "text-sm-left"> 
       <ol>
         <li v-for="friend in friends" :key="friend.Request_From">
             {{friend.FirstName}} {{friend.LastName}}
         </li>
      </ol>
-    </h3>
-    <slot></slot>
+    </h3>-->
+    
   </div>
 
 
@@ -132,7 +149,7 @@ import { bootstrap } from "bootstrap";
 import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
 import { Globals } from "@/models/api.js";
-import { GetFriends, PendingRequests, AcceptFriendRequest, RejectFriendRequest, SearchFriend } from "@/models/users.js";
+import { GetFriends, PendingRequests, AcceptFriendRequest, RejectFriendRequest, SearchFriend, SendRequest, RemoveFriend } from "@/models/users.js";
 import toastr from 'toastr';
 
 export default {
@@ -172,10 +189,8 @@ export default {
         },
 
         async search(searchemail){
-            try {//Yet to finish
-
-                
-              //console.log({searchemail: searchemail});--Testing
+            try {
+               //console.log({searchemail: searchemail});--Testing
               const m = await SearchFriend(searchemail);
               //console.log({m:m});--Testing
               //console.log({pendingrequests: this.pendingrequests})--Testing
@@ -188,6 +203,27 @@ export default {
              }
             //console.log({isHidden:this.isHidden})--Testing
               toastr.success("Found!")
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        },
+
+        async sendrequest(Request_To){
+            try {
+              const m = await SendRequest(Globals.user.Email,Request_To); 
+              toastr.success("Request Sent!!")
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        },
+
+        async removefriend(Email){
+            try {
+                console.log(Email);
+              const m = await RemoveFriend(Globals.user.Email,Email); 
+              toastr.success("Friend Removed From Your Friend List!")
             } catch (error) {
               Globals.errors.push(error);
               toastr.error(error.message);
