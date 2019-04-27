@@ -45,15 +45,25 @@ const router = new Router({
       name: 'my-friends',
       component: MyFriends
     },
-    {
+    /*{
       path: '/Workouts',
-      name: 'Workouts',
+      //name: 'Workouts',
       component: Workouts,
       children: [{
         path: 'Legs',
-        name: 'type',
-        component: Legs
+        //name: 'type',
+        //type: 'Legs',
+        //component: Legs
+        components: {
+        	//default: Workouts,
+          type: Legs
+        }
       }]
+    },*/
+    {
+      path: '/Legs',
+      name: 'Legs',
+      component: Legs
     },
     {
       path: '/about',

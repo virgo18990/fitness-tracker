@@ -14,7 +14,7 @@
        <li> <router-link to="/">Core</router-link></li>
        <li> <router-link to="/">Endurance</router-link></li>
        <li> <router-link to="/">Lat</router-link></li>
-       <li> <router-link to="/Workouts/Legs">Legs</router-link></li>
+       <li> <router-link to="/Workouts/Legs" >Legs</router-link></li>
        <li> <router-link to="/">Shoulders & Lat</router-link></li>
      </ul>
       
@@ -62,10 +62,7 @@
     </a>
   </div>
 
-  <div>
-      <h1> This is Workouts component </h1>
-      <router-view name="type"/>
-  </div>
+ 
 
 
 </div>
@@ -105,7 +102,7 @@ export default {
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 .home{
-  margin-top:1100px;
+  margin-top:1000px;
   
 }
 
