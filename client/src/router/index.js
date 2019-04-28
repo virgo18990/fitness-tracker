@@ -8,6 +8,7 @@ import Arms from '../views/Arms.vue'
 import Abs from '../views/Abs.vue'
 import Chest from '../views/Chest.vue'
 import Core from '../views/Core.vue'
+import Endurance from '../views/Endurance.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
@@ -83,6 +84,11 @@ const router = new Router({
       path: '/Core',
       name: 'Core',
       component: Core
+    },
+    {
+      path: '/Endurance',
+      name: 'Endurance',
+      component: Endurance
     },
     {
       path: '/Legs',
