@@ -24,6 +24,9 @@
                     <router-link class="nav-link" to="/Chest">Chest</router-link>
                 </li>
                 <li class="nav-item">
+                    <router-link class="nav-link" to="/Core">Core</router-link>
+                </li>
+                <li class="nav-item">
                     <router-link class="nav-link" to="/Legs">Legs</router-link>
                 </li>
                 <li class="nav-item">
