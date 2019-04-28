@@ -61,17 +61,17 @@ const workoutsmodel = {
 
         if(data.Level==='Weight Loss')
         {
-            const x = await conn.query("SELECT distinct WorkoutName from Workouts_Beginner WHERE WorkoutSubType=?", input.WorkoutSubType);
+            const x = await conn.query("SELECT distinct WorkoutName from Workouts_Beginner WHERE WorkoutType=? and WorkoutSubType=?", [input.WorkoutType, input.WorkoutSubType]);
             return x;
         }
         else if(data.Level==='Build Muscle')
         {
-            const x = await conn.query("SELECT distinct WorkoutName from Workouts_Intermediate WHERE WorkoutSubType=?", input.WorkoutSubType);
+            const x = await conn.query("SELECT distinct WorkoutName from Workouts_Intermediate WHERE WorkoutType=? and WorkoutSubType=?", [input.WorkoutType, input.WorkoutSubType]);
             return x;
         }
         else
         {
-            const x = await conn.query("SELECT distinct WorkoutName from Workouts_Advanced  WHERE WorkoutSubType=?", input.WorkoutSubType);
+            const x = await conn.query("SELECT distinct WorkoutName from Workouts_Advanced  WHERE WorkoutType=? and WorkoutSubType=?", [input.WorkoutType, input.WorkoutSubType]);
             return x;
         }
     },

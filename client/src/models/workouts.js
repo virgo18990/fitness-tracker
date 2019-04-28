@@ -10,8 +10,8 @@ export async function GetWorkoutSubType(workouttype){
     return x;
 }
 
-export async function GetWorkoutName(workoutsubtype){
-    const x = await api("WorkoutsController/GetWorkoutName", { WorkoutSubType: workoutsubtype, Email: Globals.user.Email })
+export async function GetWorkoutName(workouttype,workoutsubtype){
+    const x = await api("WorkoutsController/GetWorkoutName", { WorkoutType:workouttype, WorkoutSubType: workoutsubtype, Email: Globals.user.Email })
     return x;
 }
 

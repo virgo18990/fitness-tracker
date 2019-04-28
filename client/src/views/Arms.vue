@@ -104,7 +104,7 @@
       </div>
       <div class="well">
         <p>ADS</p>
-      </div>  
+      </div>
     </div>
   </div>
 </div>
@@ -133,7 +133,7 @@ export default {
         
     }),
     async mounted(){
-        const bodypart = 'Legs'
+        const bodypart = 'Arms'
         this.workouttype = await GetWorkoutType(bodypart);
     },
     methods: {
