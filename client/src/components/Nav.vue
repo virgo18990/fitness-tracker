@@ -11,9 +11,9 @@
                 <li class="nav-item ">
                     <router-link class="nav-link" to="/Home" active-class="active" exact>Home <span class="sr-only">(current)</span></router-link>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <router-link class="nav-link" to="/Workouts">Workouts</router-link>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <router-link class="nav-link" to="/Abs">Abs</router-link>
                 </li>
@@ -39,7 +39,7 @@
                     <router-link class="nav-link" to="/Legs">Legs</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/Home">Meal Plan</router-link>
+                    <router-link class="nav-link" to="/MealPlan">Meal Plan</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/Home">Track Progress</router-link>

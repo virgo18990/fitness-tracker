@@ -11,6 +11,7 @@ import Core from '../views/Core.vue'
 import Endurance from '../views/Endurance.vue'
 import Lat from '../views/Lat.vue'
 import ShouldersLat from '../views/Shoulders&Lat.vue'
+import MealPlan from '../views/MealPlan.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
@@ -106,6 +107,11 @@ const router = new Router({
       path: '/Legs',
       name: 'Legs',
       component: Legs
+    },
+    {
+      path: '/MealPlan',
+      name: 'MealPlan',
+      component: MealPlan
     },
     {
       path: '/about',

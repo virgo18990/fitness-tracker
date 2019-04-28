@@ -104,8 +104,8 @@
                 <input type="radio" name="Vegetarian" id="Vegetarian" v-model='data.MealType' value="Vegetarian" checked>
                 <label for="Vegetarian">Vegetarian &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
             
-                <input type="radio" name="NonVegetarian" id="NonVegetarian" v-model='data.MealType' value="NonVegetarian">
-                <label for="NonVegetarian">Non-Vegetarian</label>
+                <input type="radio" name="Non-Vegetarian" id="Non-Vegetarian" v-model='data.MealType' value="Non-Vegetarian">
+                <label for="Non-Vegetarian">Non-Vegetarian</label>
           </td>
           <td>
             <label for="Gender">Gender</label>

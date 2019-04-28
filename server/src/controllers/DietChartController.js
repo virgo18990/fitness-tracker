@@ -4,26 +4,32 @@ const DietChartModel = require('../models/DietChartModel');
 
 const app = express.Router();
 
-app.get("/", (req,res) => {
-    DietChartModel.getAll((err,data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+app.get("/", (req, res, next) => {
+    
+    DietChartModel.getAll(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
-app.get("/:Id", (req,res) => {
-
-    DietChartModel.get(req.params.Id, (err,data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+app.get("/:Id", (req, res, next) => {
+    
+    DietChartModel.get(req.params.Id)
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
-app.post("/", (req,res) => {
-    DietChartModel.showMealPlan(req.body, (err,data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+app.post("/GetDays", (req, res, next) => {
+    console.log('Inside post');
+    DietChartModel.getDays(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
+app.post("/ShowMealPlan", (req, res, next) => {
+    
+    DietChartModel.showMealPlan(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
 });
 
 
