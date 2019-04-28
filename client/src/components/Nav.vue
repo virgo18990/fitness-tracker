@@ -33,6 +33,9 @@
                     <router-link class="nav-link" to="/Lat">Lat</router-link>
                 </li>
                 <li class="nav-item">
+                    <router-link class="nav-link" to="/ShouldersLat">Shoulders and Lat</router-link>
+                </li>
+                <li class="nav-item">
                     <router-link class="nav-link" to="/Legs">Legs</router-link>
                 </li>
                 <li class="nav-item">

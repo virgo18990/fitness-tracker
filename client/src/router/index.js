@@ -10,6 +10,7 @@ import Chest from '../views/Chest.vue'
 import Core from '../views/Core.vue'
 import Endurance from '../views/Endurance.vue'
 import Lat from '../views/Lat.vue'
+import ShouldersLat from '../views/Shoulders&Lat.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
@@ -95,6 +96,11 @@ const router = new Router({
       path: '/Lat',
       name: 'Lat',
       component: Lat
+    },
+    {
+      path: '/ShouldersLat',
+      name: 'ShouldersLat',
+      component: ShouldersLat
     },
     {
       path: '/Legs',
