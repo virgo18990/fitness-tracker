@@ -6,6 +6,7 @@ import Workouts from '../components/Workouts.vue'
 import Legs from '../views/Legs.vue'
 import Arms from '../views/Arms.vue'
 import Abs from '../views/Abs.vue'
+import Chest from '../views/Chest.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
@@ -71,6 +72,11 @@ const router = new Router({
       path: '/Arms',
       name: 'Arms',
       component: Arms
+    },
+    {
+      path: '/Chest',
+      name: 'Chest',
+      component: Chest
     },
     {
       path: '/Legs',
