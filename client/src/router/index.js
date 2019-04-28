@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Workouts from '../components/Workouts.vue'
 import Legs from '../views/Legs.vue'
 import Arms from '../views/Arms.vue'
+import Abs from '../views/Abs.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
@@ -61,6 +62,11 @@ const router = new Router({
         }
       }]
     },*/
+    {
+      path: '/Abs',
+      name: 'Abs',
+      component: Abs
+    },
     {
       path: '/Arms',
       name: 'Arms',

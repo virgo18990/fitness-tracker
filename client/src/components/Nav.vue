@@ -15,6 +15,9 @@
                     <router-link class="nav-link" to="/Workouts">Workouts</router-link>
                 </li>
                 <li class="nav-item">
+                    <router-link class="nav-link" to="/Abs">Abs</router-link>
+                </li>
+                <li class="nav-item">
                     <router-link class="nav-link" to="/Arms">Arms</router-link>
                 </li>
                 <li class="nav-item">
