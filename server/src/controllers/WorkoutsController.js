@@ -18,4 +18,19 @@ app.post("/GetWorkoutSubType", (req, res, next) => {
     .catch(next)
 });
 
+app.post("/GetWorkoutName", (req, res, next) => {
+    
+    WorkoutsModel.getworkoutname(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
+app.post("/GetSetsReps", (req, res, next) => {
+    
+    WorkoutsModel.getsetsreps(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
+
 module.exports = app;

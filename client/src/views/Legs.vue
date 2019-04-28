@@ -53,21 +53,45 @@
           <br/>
 
 
-     <h5><label for="WorkoutType">Workout Type</label>   </h5>  
+     <h4><label for="WorkoutType">Workout Type</label>   </h4>  
     <select class="form-control" name="WorkoutType"  v-model='data.WorkoutType' @change="getworkoutsubtype(data.WorkoutType)">
     <option v-for="workouttype in workouttype" :key="workouttype.workouttype">{{workouttype.WorkoutType}} </option>
    </select>
     
     <div v-if="!isHidden"><br/>
-   <h5><label for="WorkoutSubType">Workout Sub Type</label>   </h5>  
-    <select class="form-control" name="WorkoutSubType"  v-model='data.WorkoutSubType'>
+   <h4><label for="WorkoutSubType">Workout Sub Type</label>   </h4>  
+    <select class="form-control" name="WorkoutSubType"  v-model='data.WorkoutSubType'  @change="getworkoutname(data.WorkoutSubType)">
     <option v-for="workoutsubtype in workoutsubtype" :key="workoutsubtype.workoutsubtype">{{workoutsubtype.WorkoutSubType}} </option>
    </select>
     </div>
 
+    <div v-if="!isHiddenWorkoutName"><br/>
+   <h4><label for="WorkoutName">Workout Name</label>   </h4>  
+    <select class="form-control" name="WorkoutName"  v-model='data.WorkoutName'  @change="getsetsreps(data.WorkoutName)">
+    <option v-for="workoutname in workoutname" :key="workoutname.Id">{{workoutname.WorkoutName}} </option>
+   </select>
+    </div>
 
+    <div v-if="!isHiddenSetsReps"><br/>
+    <table>
+      <tr>
+        <td>
+   <h4><label for="Sets"  name="Sets">Sets</label>
+        
+   <p v-for="setsreps in setsreps" :key="setsreps.Id">{{setsreps.Sets}}</p></h4>
+        </td>
 
+        <td>
+   <h4>&nbsp;&nbsp;&nbsp;&nbsp;<label for="Reps"  name="Reps">Reps</label>  
+   
+   <p v-for="setsreps in setsreps" :key="setsreps.Id">&nbsp;&nbsp;&nbsp;&nbsp;{{setsreps.Reps}}</p></h4> 
+        </td>
 
+      </tr>
+    </table>
+    
+    
+    </div>
 
     </div>
 
@@ -93,7 +117,7 @@ import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
 import Workouts from '../components/Workouts';
 import { Globals } from "@/models/api.js";
-import { GetWorkoutType, GetWorkoutSubType } from "@/models/workouts.js";
+import { GetWorkoutType, GetWorkoutSubType, GetWorkoutName, GetSetsReps } from "@/models/workouts.js";
 import toastr from 'toastr';
 export default {
      data: ()=> ({
@@ -101,38 +125,66 @@ export default {
         data: {},
         workouttype:[],
         workoutsubtype:[],
-        isHidden : true
+        workoutname:[],
+        setsreps:[],
+        isHidden : true,
+        isHiddenWorkoutName : true,
+        isHiddenSetsReps : true
         
     }),
     async mounted(){
-        this.workouttype = await GetWorkoutType();
-        console.log({workouttype:this.workouttype});
+        const bodypart = 'Legs'
+        this.workouttype = await GetWorkoutType(bodypart);
     },
     methods: {
         async getworkoutsubtype(workouttype){
             try {
-                console.log('Inside getworkoutsubtype');
-               //console.log({searchemail: searchemail});--Testing
               const m = await GetWorkoutSubType(workouttype);
-              //console.log({m:m});--Testing
-              //console.log({pendingrequests: this.pendingrequests})--Testing
               this.workoutsubtype= m;
-              console.log(this.workoutsubtype);
-              //console.log({searchresults:this.searchresults[0].Email});--Testing
-             
-            //console.log({isHidden:this.isHidden})--Testing
+            
                 if(this.workoutsubtype[0].WorkoutSubType !== '')
                 {
-                    console.log('Inside workoutsubtype');
                     this.isHidden = false;
                 }
-
-              toastr.success("Found!")
+              
             } catch (error) {
               Globals.errors.push(error);
               toastr.error(error.message);
             }
         },
+
+        async getworkoutname(workoutsubtype){
+            try {
+              const m = await GetWorkoutName(workoutsubtype);
+              this.workoutname= m;
+            
+                if(this.workoutname[0].WorkoutName !== '')
+                {
+                    this.isHiddenWorkoutName = false;
+                }
+
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        },
+
+        async getsetsreps(workoutname){
+            try {
+              const m = await GetSetsReps(workoutname);
+              this.setsreps= m;
+            
+                if(this.setsreps[0].Reps !== '' && this.setsreps[0].Sets !== '')
+                {
+                    this.isHiddenSetsReps = false;
+                }
+
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        }
+ 
     },
     components: {
         Workouts
