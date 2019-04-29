@@ -84,12 +84,33 @@
         <td>
    <h4>&nbsp;&nbsp;&nbsp;&nbsp;<label for="Reps"  name="Reps">Reps</label>  
    
-   <p v-for="setsreps in setsreps" :key="setsreps.Id">&nbsp;&nbsp;&nbsp;&nbsp;{{setsreps.Reps}}</p></h4> 
+   <p v-for="setsreps in setsreps" :key="setsreps.Id" >&nbsp;&nbsp;&nbsp;&nbsp;{{setsreps.Reps}}</p></h4> 
         </td>
 
       </tr>
-    </table>
+    <!--</table>-->
+
+    <!--<table>-->
+      <tr>
+        <td>
+   <h4><label for="YourSets"  name="YourSets">Your Sets</label></h4>
+    <input type="text" class="form-control" id="YourSets" v-model='data.YourSets' placeholder="Number of sets you did">
+     
+        </td>
+
+        <td>
+   <h4>&nbsp;&nbsp;&nbsp;&nbsp;<label for="YourReps"  name="YourReps">Your Reps</label> </h4> 
+    <input type="text" class="form-control" id="YourReps" v-model='data.YourReps' placeholder="Number of reps you did">
+        </td>
+
     
+      </tr>
+    </table>
+    <br/>
+    <button type="submit" class="btn btn-primary" @click.prevent="recordprogress">Record Progress</button>
+    
+    
+            
     
     </div>
 
@@ -117,7 +138,7 @@ import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
 import Workouts from '../components/Workouts';
 import { Globals } from "@/models/api.js";
-import { GetWorkoutType, GetWorkoutSubType, GetWorkoutName, GetSetsReps } from "@/models/workouts.js";
+import { GetWorkoutType, GetWorkoutSubType, GetWorkoutName, GetSetsReps, RecordProgress } from "@/models/workouts.js";
 import toastr from 'toastr';
 export default {
      data: ()=> ({
@@ -183,6 +204,19 @@ export default {
               Globals.errors.push(error);
               toastr.error(error.message);
             }
+        },
+
+        async recordprogress(){
+          try {
+            console.log({DataInVue:this.data});
+            console.log({Reps:this.setsreps[0].Reps});
+              const m = await RecordProgress(this.data, this.setsreps[0].Sets, this.setsreps[0].Reps);
+              toastr.success('Progress Recorded!')
+
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
         }
  
     },
@@ -223,6 +257,19 @@ export default {
       color: white;
       padding: 15px;
     }
+
+    table {
+  border: 2px solid black;
+  border-radius: 3px;
+  background-color: #fff;
+  color: black;
+}
+
+td {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
     
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 1024px) {
