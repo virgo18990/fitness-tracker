@@ -87,6 +87,19 @@
    <p v-for="setsreps in setsreps" :key="setsreps.Id" >&nbsp;&nbsp;&nbsp;&nbsp;{{setsreps.Reps}}</p></h4> 
         </td>
 
+    <td>
+   
+     <h4><label for="ShareProgress">Share Progress</label></h4>
+           
+              
+                <input type="radio" name="Yes" id="Yes" v-model='data.ShareProgress'  value="Yes" checked>
+                <label for="Yes">Yes &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;</label>
+             
+                <input type="radio" name="No" id="No" v-model='data.ShareProgress' value="No">
+                <label for="No">No</label>
+
+        </td>
+
       </tr>
     <!--</table>-->
 
@@ -103,14 +116,12 @@
     <input type="text" class="form-control" id="YourReps" v-model='data.YourReps' placeholder="Number of reps you did">
         </td>
 
+   <br/><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary" @click.prevent="recordprogress">Record Progress</button>
     
       </tr>
     </table>
-    <br/>
-    <button type="submit" class="btn btn-primary" @click.prevent="recordprogress">Record Progress</button>
-    
-    
-            
+
     
     </div>
 
@@ -263,6 +274,7 @@ export default {
   border-radius: 3px;
   background-color: #fff;
   color: black;
+ 
 }
 
 td {
