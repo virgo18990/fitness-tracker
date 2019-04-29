@@ -28,6 +28,11 @@ const trackprogressmodel = {
     async trackprogress(input){
         return await conn.query("SELECT distinct BodyPart, WorkoutType, WorkoutSubType, WorkoutName, Sets, Reps, YourSets, YourReps, Progress"
         +" FROM TrackProgress WHERE Email=?", input.Email);
+    },
+
+    async getsharedactivities(input){
+        return await conn.query("SELECT distinct BodyPart, WorkoutType, WorkoutSubType, WorkoutName, Sets, Reps, YourSets, YourReps, Progress"
+        +" FROM TrackProgress WHERE Email=? and ShareProgress='Yes'", input.Email);
     }
 };
 

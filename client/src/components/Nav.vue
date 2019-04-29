@@ -45,7 +45,10 @@
                     <router-link class="nav-link" to="/TrackProgress">Track Progress</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/Home">Share</router-link>
+                    <router-link class="nav-link" to="/SharedActivities">Shared Activities</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/Home">My Friends Activities</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/MyFriends">My Friends</router-link>

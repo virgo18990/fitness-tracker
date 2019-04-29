@@ -25,3 +25,9 @@ export async function RecordProgress(data, sets, reps){
     const x = await api("TrackProgressController/RecordProgress", { data, sets, reps, Email: Globals.user.Email })
     return x;
 }
+
+export async function GetSharedActivities(data, sets, reps){
+    console.log({Data:data});
+    const x = await api("TrackProgressController/GetSharedActivities", { Email: Globals.user.Email })
+    return x;
+}

@@ -23,7 +23,9 @@
     "toastr": "^2.1.4",
     "vue": "^2.5.2",
     "vuetify": "^1.5.13",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "material-design-icons": "^3.0.1",
+    "material-design-icons-iconfont": "^4.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
