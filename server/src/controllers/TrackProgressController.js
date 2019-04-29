@@ -11,4 +11,11 @@ app.post("/RecordProgress", (req, res, next) => {
     .catch(next)
 });
 
+app.post("/TrackProgress", (req, res, next) => {
+    
+    TrackProgressModel.trackprogress(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
 module.exports = app;

@@ -12,6 +12,7 @@ import Endurance from '../views/Endurance.vue'
 import Lat from '../views/Lat.vue'
 import ShouldersLat from '../views/Shoulders&Lat.vue'
 import MealPlan from '../views/MealPlan.vue'
+import TrackProgress from '../views/TrackProgress.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
@@ -114,6 +115,11 @@ const router = new Router({
       component: MealPlan
     },
     {
+      path: '/TrackProgress',
+      name: 'TrackProgress',
+      component: TrackProgress
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -129,7 +135,7 @@ router.beforeEach((to, from, next)=>{
   const publicRoutes = ['Home', 'Login', 'Workouts', 'about'];
   if(!publicRoutes.includes( to.name ) && !Globals.user){
     Globals.redirectRoute = { name: to.name, path: to.path, params: to.params, query: to.query, hash: to.hash  }
-    return next('Login');
+    return next('/');
   }
   next();
 })

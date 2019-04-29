@@ -42,7 +42,7 @@
                     <router-link class="nav-link" to="/MealPlan">Meal Plan</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/Home">Track Progress</router-link>
+                    <router-link class="nav-link" to="/TrackProgress">Track Progress</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/Home">Share</router-link>

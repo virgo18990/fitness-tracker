@@ -17,12 +17,17 @@ const trackprogressmodel = {
 
         const progress = ((Number(input.data.YourSets) * Number(input.data.YourReps))/(Number(input.sets) * Number(input.reps)))*100;
 
-        const x = await conn.query("INSERT INTO TrackProgress (Email, BodyPart, WorkoutType, WorkoutSubType, WorkoutName, Sets, Reps, YourSets, YourReps, Progress, Created_At, Updated_At) VALUES (?)",
-            [[input.Email, bodypart[0].BodyPart, input.data.WorkoutType, input.data.WorkoutSubType, input.data.WorkoutName, input.sets, input.reps, input.data.YourSets, input.data.YourReps, progress, new Date(), new Date()]]);
+        const x = await conn.query("INSERT INTO TrackProgress (Email, BodyPart, WorkoutType, WorkoutSubType, WorkoutName, Sets, Reps, YourSets, YourReps, Progress, ShareProgress, Created_At, Updated_At ) VALUES (?)",
+            [[input.Email, bodypart[0].BodyPart, input.data.WorkoutType, input.data.WorkoutSubType, input.data.WorkoutName, input.sets, input.reps, input.data.YourSets, input.data.YourReps, progress, input.data.ShareProgress, new Date(), new Date()]]);
 
             return { status: "success", msg: "Progress Recorded!" };
 
         
+    },
+
+    async trackprogress(input){
+        return await conn.query("SELECT distinct BodyPart, WorkoutType, WorkoutSubType, WorkoutName, Sets, Reps, YourSets, YourReps, Progress"
+        +" FROM TrackProgress WHERE Email=?", input.Email);
     }
 };
 
