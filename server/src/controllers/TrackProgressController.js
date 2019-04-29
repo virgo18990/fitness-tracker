@@ -1,0 +1,14 @@
+console.log('hello TrackProgressController');
+const express = require('express');
+const TrackProgressModel = require('../models/TrackProgressModel');
+
+const app = express.Router();
+
+app.post("/RecordProgress", (req, res, next) => {
+    
+    TrackProgressModel.recordprogress(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
+module.exports = app;

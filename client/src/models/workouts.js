@@ -19,3 +19,9 @@ export async function GetSetsReps(workoutname){
     const x = await api("WorkoutsController/GetSetsReps", { WorkoutName: workoutname, Email: Globals.user.Email })
     return x;
 }
+
+export async function RecordProgress(data, sets, reps){
+    console.log({Data:data});
+    const x = await api("TrackProgressController/RecordProgress", { data, sets, reps, Email: Globals.user.Email })
+    return x;
+}

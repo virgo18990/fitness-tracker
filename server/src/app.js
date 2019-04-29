@@ -14,7 +14,8 @@ const workoutsadvancedcontroller = require('./controllers/WorkoutsAdvancedContro
 const workoutvideoscontroller = require('./controllers/WorkoutVideosController');
 const workoutvideoscommentscontroller = require('./controllers/WorkoutVideosCommentsController');
 const sharedvideosscontroller = require('./controllers/SharedVideosController');
-const workoutscontroller = require('./controllers/WorkoutsController')
+const workoutscontroller = require('./controllers/WorkoutsController');
+const trackprogresscontroller = require('./controllers/TrackProgressController');
 const usermodel     = require('./models/UserModel');
 
 const app = express();
@@ -34,7 +35,7 @@ app.use(function(req, res, next) {
       req.user = usermodel.getFromToken(token);
     } catch (error) {
       //console.log({thiserror: error});
-      const openActions = ['POST/UserController', 'POST/UserController/Login', 'GET/Login', 'GET/MyFriends', 'GET/ProfileController', 'POST/ProfileController', 'GET/MyFriendsController', 'POST/MyFriendsController/GetFriends', 'POST/MyFriendsController', 'POST/MyFriendsController/AcceptFriendRequest', 'POST/MyFriendsController/PendingRequests', 'POST/MyFriendsController/SearchFriend', 'POST/MyFriendsController/RemoveFriend', 'POST/WorkoutsController/GetWorkoutType', 'POST/WorkoutsController/GetWorkoutSubType', 'POST/WorkoutsController/GetWorkoutName', 'POST/WorkoutsController/GetSetsReps','GET/DietChartController',  'GET/DietChartController/GetDays', 'POST/DietChartController/GetDays', 'POST/DietChartController/ShowMealPlan']
+      const openActions = ['POST/UserController', 'POST/UserController/Login', 'GET/Login', 'GET/MyFriends', 'GET/ProfileController', 'POST/ProfileController', 'GET/MyFriendsController', 'POST/MyFriendsController/GetFriends', 'POST/MyFriendsController', 'POST/MyFriendsController/AcceptFriendRequest', 'POST/MyFriendsController/PendingRequests', 'POST/MyFriendsController/SearchFriend', 'POST/MyFriendsController/RemoveFriend', 'POST/WorkoutsController/GetWorkoutType', 'POST/WorkoutsController/GetWorkoutSubType', 'POST/WorkoutsController/GetWorkoutName', 'POST/WorkoutsController/GetSetsReps','GET/DietChartController',  'GET/DietChartController/GetDays', 'POST/DietChartController/GetDays', 'POST/DietChartController/ShowMealPlan', 'POST/TrackProgressController/RecordProgress']
       //if(!openActions.includes(req.method + req.path)){ // check if login required
       if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path)){ // check if login required
         next(Error("Login Required"));
@@ -63,6 +64,7 @@ app.use('/WorkoutVideosController', workoutvideoscontroller);
 app.use('/WorkoutVideosCommentsController', workoutvideoscommentscontroller);
 app.use('/SharedVideosController', sharedvideosscontroller);
 app.use('/WorkoutsController', workoutscontroller);
+app.use('/TrackProgressController', trackprogresscontroller);
 
 app.get("*", (req, res)=> res.sendFile(path.join(__dirname, "../../client/dist/index.html")));
 

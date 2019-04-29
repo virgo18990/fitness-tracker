@@ -49,7 +49,7 @@
 
 <div>
     <br/>
- <h4><label for="Day">Select Day</label>   </h4>  
+ <h5><label for="Day">Select Day</label>   </h5>  
     <select class="form-control" name="Day"  v-model='data.Day' @change="showmealplan(data.Day)">
     <option v-for="day in day" :key="day.Id">{{day.Day}} </option>
    </select>
