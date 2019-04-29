@@ -7,16 +7,19 @@ const workoutsmodel = {
         console.log({input:input});
         const data = await conn.query("SELECT Level FROM Profile WHERE Email=?",input.Email);
         console.log({data: data});
+        console.log({Level:data[0].Level});
 
-        if(data.Level==='Weight Loss')
+        if(data[0].Level==='Weight Loss')
         {
+            console.log('Weight Loss');
             const x = await conn.query("SELECT distinct b.WorkoutType from Workouts_Beginner b inner join Workouts_BodyParts bp"
             +" on b.WorkoutSubType = bp.WorkoutSubType"
             +" where bp.BodyPart = ?", input.BodyPart);
             return x;
         }
-        else if(data.Level==='Build Muscle')
+        else if(data[0].Level==='Build Muscle')
         {
+            console.log('Build Muscle');
             const x = await conn.query("SELECT distinct b.WorkoutType from Workouts_Intermediate b inner join Workouts_BodyParts bp"
             +" on b.WorkoutSubType = bp.WorkoutSubType"
             +" where bp.BodyPart = ?", input.BodyPart);
@@ -24,6 +27,7 @@ const workoutsmodel = {
         }
         else
         {
+            console.log('Stay Fit');
             const x = await conn.query("SELECT distinct b.WorkoutType from Workouts_Advanced b inner join Workouts_BodyParts bp"
             +" on b.WorkoutSubType = bp.WorkoutSubType"
             +" where bp.BodyPart = ?", input.BodyPart);
@@ -37,12 +41,12 @@ const workoutsmodel = {
         const data = await conn.query("SELECT Level FROM Profile WHERE Email=?",input.Email);
         console.log({data: data});
 
-        if(data.Level==='Weight Loss')
+        if(data[0].Level==='Weight Loss')
         {
             const x = await conn.query("SELECT distinct WorkoutSubType from Workouts_Beginner WHERE WorkoutType=?", input.WorkoutType);
             return x;
         }
-        else if(data.Level==='Build Muscle')
+        else if(data[0].Level==='Build Muscle')
         {
             const x = await conn.query("SELECT distinct WorkoutSubType from Workouts_Intermediate WHERE WorkoutType=?", input.WorkoutType);
             return x;
@@ -59,12 +63,12 @@ const workoutsmodel = {
         const data = await conn.query("SELECT Level FROM Profile WHERE Email=?",input.Email);
         console.log({data: data});
 
-        if(data.Level==='Weight Loss')
+        if(data[0].Level==='Weight Loss')
         {
             const x = await conn.query("SELECT distinct WorkoutName from Workouts_Beginner WHERE WorkoutType=? and WorkoutSubType=?", [input.WorkoutType, input.WorkoutSubType]);
             return x;
         }
-        else if(data.Level==='Build Muscle')
+        else if(data[0].Level==='Build Muscle')
         {
             const x = await conn.query("SELECT distinct WorkoutName from Workouts_Intermediate WHERE WorkoutType=? and WorkoutSubType=?", [input.WorkoutType, input.WorkoutSubType]);
             return x;
@@ -81,12 +85,12 @@ const workoutsmodel = {
         const data = await conn.query("SELECT Level FROM Profile WHERE Email=?",input.Email);
         console.log({data: data});
 
-        if(data.Level==='Weight Loss')
+        if(data[0].Level==='Weight Loss')
         {
             const x = await conn.query("SELECT distinct Reps, Sets from Workouts_Beginner WHERE WorkoutName=?", input.WorkoutName);
             return x;
         }
-        else if(data.Level==='Build Muscle')
+        else if(data[0].Level==='Build Muscle')
         {
             const x = await conn.query("SELECT distinct Reps, Sets  from Workouts_Intermediate WHERE WorkoutName=?", input.WorkoutName);
             return x;
