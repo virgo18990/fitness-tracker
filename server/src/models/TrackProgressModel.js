@@ -7,10 +7,18 @@ const trackprogressmodel = {
         const bodypart = await conn.query("select distinct BodyPart from saxenap1_db.Workouts_BodyParts"
         +" where WorkoutSubType=?", input.data.WorkoutSubType);
 
-        console.log({data:bodypart[0].BodyPart});
+        const yoursets=parseInt(input.data.YourSets,10);
+        console.log({YourSets: yoursets});
+
+        /*Calculating Progress Percentage by dividing ((number of performed sets)*(number of performed reps) BY
+          (number of expected sets)*(number of expected reps)) * 100  */
+
+        // YourSets and YourReps are entered by the user AND Sets and Reps are expected number
+
+        const progress = ((Number(input.data.YourSets) * Number(input.data.YourReps))/(Number(input.sets) * Number(input.reps)))*100;
 
         const x = await conn.query("INSERT INTO TrackProgress (Email, BodyPart, WorkoutType, WorkoutSubType, WorkoutName, Sets, Reps, YourSets, YourReps, Progress, Created_At, Updated_At) VALUES (?)",
-            [[input.Email, bodypart[0].BodyPart, input.data.WorkoutType, input.data.WorkoutSubType, input.data.WorkoutName, input.sets, input.reps, input.data.YourSets, input.data.YourReps, 'In Progress', new Date(), new Date()]]);
+            [[input.Email, bodypart[0].BodyPart, input.data.WorkoutType, input.data.WorkoutSubType, input.data.WorkoutName, input.sets, input.reps, input.data.YourSets, input.data.YourReps, progress, new Date(), new Date()]]);
 
             return { status: "success", msg: "Progress Recorded!" };
 
