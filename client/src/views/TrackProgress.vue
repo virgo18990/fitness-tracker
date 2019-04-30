@@ -48,15 +48,108 @@
     </a>
   </div>
 
-    <div style="height:20%; overflow-y: scroll">
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-        <br><br><br><br>
-    </div>
+    <div>
+          <br/>
+          <v-layout align-center>
+    <v-item-group
+      v-model="window"
+      class="shrink mr-4"
+      mandatory
+      tag="v-flex"
+    >
+      <v-item
+        v-for="n in length"
+        :key="n"
+      >
+        <div slot-scope="{ active, toggle }">
+          <v-btn
+            :input-value="active"
+            icon
+            @click="toggle"
+          >
+            <v-icon>mdi-record</v-icon>
+          </v-btn>
+        </div>
+      </v-item>
+    </v-item-group>
+
+    <v-flex>
+      <v-window
+        v-model="window"
+        class="elevation-1"
+        vertical
+        
+      >
+        <v-window-item
+         v-for="myprogress in myprogress" :key="myprogress.Id"
+        >
+          <v-card flat >
+            <v-card-text>
+              <v-layout align-center mb-3>
+                <v-avatar color="pink" class="mr-3"></v-avatar>
+                <strong class="title">Workout Name {{ myprogress.WorkoutName }}</strong>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>mdi-account</v-icon>
+                </v-btn>
+              </v-layout>
+
+              <table border="2px" solid>
+                <tr>
+                  <td bgcolor="pink">
+                    <strong class="title">Workout Type</strong>
+                  </td>
+                  <td>
+                    <strong class="title">{{ myprogress.WorkoutType }}</strong>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td bgcolor="pink">
+                    <strong class="title">Workout Sub Type</strong>
+                  </td>
+                  <td>
+                    <strong class="title">{{ myprogress.WorkoutSubType }}</strong>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td bgcolor="pink">
+                    <strong class="title">Your Sets</strong>
+                  </td>
+                  <td>
+                    <strong class="title">{{ myprogress.YourSets }}</strong>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td bgcolor="pink">
+                    <strong class="title">Your Reps</strong>
+                  </td>
+                  <td>
+                    <strong class="title">{{ myprogress.YourReps }}</strong>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td bgcolor="pink">
+                    <strong class="title">Progress</strong>
+                  </td>
+                  <td>
+                    <strong class="title">{{ myprogress.Progress }}%</strong>
+                  </td>
+                </tr>
+              </table>
+              
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+            </v-card-text>
+          </v-card>
+        </v-window-item>
+      </v-window>
+    </v-flex>
+  </v-layout>
+      </div>
  
 
 
@@ -76,18 +169,33 @@
 
 </template>
 
-<!--<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">-->
-  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>-->
 
  <script>
 import { bootstrap } from "bootstrap";
 import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
+import { Globals } from "@/models/api.js";
+import { TrackProgress } from "@/models/workouts.js";
+import toastr from 'toastr';
 
 export default {
+
+   data: ()=> ({
+        Globals: Globals,
+        data: {},
+        myprogress: [],
+        length: [],
+        window: 0
+    }),
+    async mounted(){
+        this.myprogress = await TrackProgress();
+        console.log({myprogress: this.myprogress});
+        length = this.myprogress.length;
+        console.log({length: length});
+        this.length = length;
+        console.log({thisLength:this.length});
+        
+    }
 
 }
  </script>
