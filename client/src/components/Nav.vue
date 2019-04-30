@@ -53,9 +53,9 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/MyFriends">My Friends</router-link>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <router-link class="nav-link" to="/about" active-class="active">About</router-link>
-                </li>
+                </li>-->
                 
                 
             </ul>
