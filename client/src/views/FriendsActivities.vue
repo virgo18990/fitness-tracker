@@ -1,11 +1,9 @@
 <template>
-  
   <div class="home"> 
         
         <div class="container-fluid">  
   <div class="row content">
     <div class="col-lg-2 sidenav">
-      
       
       
     </div>
@@ -51,7 +49,7 @@
     </a>
   </div>
 
-      <div>
+  <div>
           <br/>
           <v-layout align-center>
     <v-item-group
@@ -84,13 +82,13 @@
         
       >
         <v-window-item
-         v-for="sharedactivities in sharedactivities" :key="sharedactivities.Id"
+         v-for="friendsactivities in friendsactivities" :key="friendsactivities.Id"
         >
           <v-card flat >
             <v-card-text>
               <v-layout align-center mb-3>
                 <v-avatar color="pink" class="mr-3"></v-avatar>
-                <strong class="title">Workout Name {{ sharedactivities.WorkoutName }}</strong>
+                <strong class="title">Shared By: {{ friendsactivities.FirstName }} {{ friendsactivities.LastName }}</strong>
                 <v-spacer></v-spacer>
                 <v-btn icon>
                   <v-icon>mdi-account</v-icon>
@@ -98,12 +96,22 @@
               </v-layout>
 
               <table border="2px" solid>
+
+                   <tr>
+                  <td bgcolor="pink">
+                    <strong class="title">Workout Name</strong>
+                  </td>
+                  <td>
+                    <strong class="title">{{ friendsactivities.WorkoutName }}</strong>
+                  </td>
+                </tr>
+
                 <tr>
                   <td bgcolor="pink">
                     <strong class="title">Workout Type</strong>
                   </td>
                   <td>
-                    <strong class="title">{{ sharedactivities.WorkoutType }}</strong>
+                    <strong class="title">{{ friendsactivities.WorkoutType }}</strong>
                   </td>
                 </tr>
 
@@ -112,25 +120,25 @@
                     <strong class="title">Workout Sub Type</strong>
                   </td>
                   <td>
-                    <strong class="title">{{ sharedactivities.WorkoutSubType }}</strong>
+                    <strong class="title">{{ friendsactivities.WorkoutSubType }}</strong>
                   </td>
                 </tr>
 
                 <tr>
                   <td bgcolor="pink">
-                    <strong class="title">Your Sets</strong>
+                    <strong class="title">Sets</strong>
                   </td>
                   <td>
-                    <strong class="title">{{ sharedactivities.YourSets }}</strong>
+                    <strong class="title">{{ friendsactivities.YourSets }}</strong>
                   </td>
                 </tr>
 
                 <tr>
                   <td bgcolor="pink">
-                    <strong class="title">Your Reps</strong>
+                    <strong class="title">Reps</strong>
                   </td>
                   <td>
-                    <strong class="title">{{ sharedactivities.YourReps }}</strong>
+                    <strong class="title">{{ friendsactivities.YourReps }}</strong>
                   </td>
                 </tr>
 
@@ -139,12 +147,12 @@
                     <strong class="title">Progress</strong>
                   </td>
                   <td>
-                    <strong class="title">{{ sharedactivities.Progress }}%</strong>
+                    <strong class="title">{{ friendsactivities.Progress }}%</strong>
                   </td>
                 </tr>
               </table>
               
-              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
             </v-card-text>
           </v-card>
@@ -177,24 +185,22 @@ import { bootstrap } from "bootstrap";
 import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
 import { Globals } from "@/models/api.js";
-import Workouts from '../components/Workouts';
-import { GetSharedActivities } from "@/models/workouts.js";
+import { GetFriendsActivities } from "@/models/workouts.js";
 import toastr from 'toastr';
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 export default {
 
     data: ()=> ({
         Globals: Globals,
         data: {},
-        sharedactivities: [],
+        friendsactivities: [],
         length: [],
         window: 0
     }),
     async mounted(){
-        this.sharedactivities = await GetSharedActivities();
-        console.log({sharedactivities: this.sharedactivities});
-        length = this.sharedactivities.length;
+        this.friendsactivities = await GetFriendsActivities();
+        console.log({friendsactivities: this.friendsactivities});
+        length = this.friendsactivities.length;
         console.log({length: length});
         this.length = length;
         console.log({thisLength:this.length});
@@ -234,7 +240,7 @@ export default {
       padding: 15px;
     }
 
-     table {
+    table {
       border: 2px solid black;
       border-radius: 3px;
       background-color: #fff;
@@ -248,6 +254,7 @@ export default {
         padding-bottom: 5px;
     }
    
+    
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 1024px) {
       .sidenav {
@@ -257,3 +264,8 @@ export default {
       .row.content {height:100%;} 
     }
 </style>
+
+
+
+
+

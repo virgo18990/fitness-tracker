@@ -14,6 +14,7 @@ import ShouldersLat from '../views/Shoulders&Lat.vue'
 import MealPlan from '../views/MealPlan.vue'
 import TrackProgress from '../views/TrackProgress.vue'
 import SharedActivities from '../views/SharedActivities.vue'
+import FriendsActivities from '../views/FriendsActivities.vue'
 import Login from '../views/Login.vue'
 import MyFriends from "../views/MyFriends.vue"
 import About from "../views/About.vue"
@@ -124,6 +125,11 @@ const router = new Router({
       path: '/SharedActivities',
       name: 'SharedActivities',
       component: SharedActivities
+    },
+    {
+      path: '/FriendsActivities',
+      name: 'FriendsActivities',
+      component: FriendsActivities
     },
     {
       path: '/about',

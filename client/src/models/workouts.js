@@ -31,3 +31,9 @@ export async function GetSharedActivities(data, sets, reps){
     const x = await api("TrackProgressController/GetSharedActivities", { Email: Globals.user.Email })
     return x;
 }
+
+export async function GetFriendsActivities(){
+    
+    const x = await api("TrackProgressController/GetFriendsActivities", { Email: Globals.user.Email })
+    return x;
+}

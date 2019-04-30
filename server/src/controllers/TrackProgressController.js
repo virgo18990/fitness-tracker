@@ -25,4 +25,12 @@ app.post("/GetSharedActivities", (req, res, next) => {
     .catch(next)
 });
 
+app.post("/GetFriendsActivities", (req, res, next) => {
+    
+    TrackProgressModel.getfriendsactivities(req.body)
+    .then(x=>  res.send(x) )
+    .catch(next)
+});
+
+
 module.exports = app;

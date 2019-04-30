@@ -101,14 +101,7 @@
     </v-expansion-panel-content>
   </v-expansion-panel>
 
-    <!--<h3 class= "text-sm-left"> 
-      <ol>
-        <li v-for="friend in friends" :key="friend.Request_From">
-            {{friend.FirstName}} {{friend.LastName}}
-        </li>
-     </ol>
-    </h3>-->
-    
+ 
   </div>
 
 

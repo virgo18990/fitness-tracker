@@ -33,6 +33,21 @@ const trackprogressmodel = {
     async getsharedactivities(input){
         return await conn.query("SELECT distinct BodyPart, WorkoutType, WorkoutSubType, WorkoutName, Sets, Reps, YourSets, YourReps, Progress"
         +" FROM TrackProgress WHERE Email=? and ShareProgress='Yes'", input.Email);
+    },
+
+    async getfriendsactivities(input){
+        //Fetches activities of the user who has ShareProgress="Yes" AND is a friend to the logged in user
+        //The sub query here fetches the email of the user who is a friend to the logged in user
+        return await conn.query("select us.FirstName, us.LastName, t.BodyPart, t.WorkoutType, t.WorkoutSubType, t.WorkoutName, t.YourSets, t.YourReps, t.Progress"
+        +" from saxenap1_db.TrackProgress t inner join saxenap1_db.Users us"
+        +" on t.Email = us.Email"
+        +" where t.ShareProgress='Yes'"
+        +" and t.Email in"
+        +" ( select distinct u.Email from saxenap1_db.Users u inner join saxenap1_db.MyFriends m"
+        +" on m.Request_From = u.Email where m.Request_Status ='Accepted' and m.Request_To=?"
+        +" UNION"
+        +" select distinct u.Email from saxenap1_db.Users u inner join saxenap1_db.MyFriends m"
+        +" on m.Request_To = u.Email where m.Request_Status ='Accepted' and m.Request_From=?)", [input.Email, input.Email]);
     }
 };
 
