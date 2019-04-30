@@ -17,9 +17,13 @@
     <div class="container">
   <img src="../assets/imghome.jpg"  style="width:100%">
   <div class="content">
-    <h1>Meals, Workout and more....</h1>
+    <!--<h1>Meals, Workout and more....</h1>-->
 
-<form @submit.prevent="submit"> 
+<table>
+<tr>
+
+  <td>
+      <form @submit.prevent="submit"> 
 
   <div class="form-group">
     <label for="Email">Email</label>
@@ -30,25 +34,58 @@
     <label for="Password">Password</label>
     <input type="password" class="form-control" id="Password" v-model='data.Password' placeholder="Password">
   </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Keep me signed in</label>
-  </div>
+  
 
-<!--<div v-if="!Globals.user">
- <button type="submit" class="btn btn-primary btn-space" @click.prevent="login">Login</button>
-  <button type="submit" class="btn btn-primary btn-space">Sign Up</button>
-</div>-->
-<!--<span class="navbar-text" v-if="Globals.user">Welcome {{Globals.user.name}}</span>-->
 
-<!--<div v-if="Globals.user">-->
   <div>
-<!--<button type="submit" class="btn btn-primary btn-space" @click="login">Login</button>-->
-
 <button type="submit" class="btn btn-primary" >Login</button>
 </div>
 
 </form>
+  </td>
+</tr>
+
+
+
+<tr>
+  <td>
+    <form @submit.prevent="register"> 
+
+  <div class="form-group">
+    <label for="FirstName">First Name</label>
+    <input type="text" class="form-control" id="FirstName" v-model='data.FirstName' aria-describedby="FirstNameHelp" placeholder="Enter First Name">
+  <div class="form-group">
+    <label for="LastName">Last Name</label>
+    <input type="LastName" class="form-control" id="LastName" v-model='data.LastName' placeholder="Enter Last Name">
+  </div>
+  <div class="form-group">
+    <label for="Birthday">Birthday</label>
+    <input type="text" class="form-control" id="Birthday" v-model='data.Birthday' aria-describedby="BirthdayHelp" placeholder="mm/dd/yyyy">
+    <small id="BirthdayHelp" class="form-text text-muted">mm/dd/yyyy</small>
+  </div>
+  <div class="form-group">
+    <label for="Password">Password</label>
+    <input type="password" class="form-control" id="RegPassword" v-model='data.RegPassword' placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <input type="text" class="form-control" id="RegEmail" v-model='data.RegEmail' placeholder="Enter Email">
+  </div>
+  </div>
+  <div>
+<button type="submit" class="btn btn-primary" >Sign Up</button>
+</div>
+
+</form>
+
+  </td>
+</tr>
+
+
+
+</table>
+
+
 
   </div>
 </div>
@@ -60,7 +97,7 @@
 // @ is an alias to /src
 
 import {  Globals } from "@/models/api.js";
-import { Login } from "@/models/users"; //should it be users.js
+import { Login, Register } from "@/models/users"; //should it be users.js
 import toastr from 'toastr';
 //import 'toastr/build/toastr.css';
 
@@ -88,6 +125,18 @@ export default {
               //Globals.user = m.user;
               //Globals.token = m.token;
               toastr.success("You've logged in successfully!")
+            } catch (error) {
+              Globals.errors.push(error);
+              toastr.error(error.message);
+            }
+        },
+
+        async register(){
+            try {
+              console.log(this.data);
+              const m = await Register(this.data);
+              
+              toastr.success("You've registered successfully!")
             } catch (error) {
               Globals.errors.push(error);
               toastr.error(error.message);

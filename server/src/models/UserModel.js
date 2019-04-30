@@ -21,23 +21,25 @@ const usermodel = {
     },
 
     async add(input){
+
+        console.log('Inside add');
         const SALT_FACTOR = 8;
 
         //Adding for hashing password
         
-        const password = input.Password;
+        const password = input.RegPassword;
 
         var salt = bcrypt.genSaltSync(SALT_FACTOR);
         var hash = bcrypt.hashSync(password, salt);
 
-        const data = await conn.query("SELECT * FROM Users WHERE Email=?",input.Email);
+        const data = await conn.query("SELECT * FROM Users WHERE Email=?",input.RegEmail);
 
         if(data.length !== 0){
             throw Error('User Already Exists');
         }
         else if(data.length===0){
                 const x = await conn.query("INSERT INTO Users (FirstName,LastName,Birthday,Password,Email,Created_At,Updated_At) VALUES (?)",
-                [[input.FirstName, input.LastName, input.Birthday, hash,input.Email, new Date(), new Date()]]);
+                [[input.FirstName, input.LastName, input.Birthday, hash,input.RegEmail, new Date(), new Date()]]);
 
                 return { status: "success", msg: "User Succesfully Registered" };
         }

@@ -44,6 +44,12 @@ export async function Login(data){
     return x;
 }
 
+export async function Register(data){
+    console.log({Data:data});
+    const x = await api("UserController/Register", data)
+    return x;
+}
+
 export async function CreateProfile(data){
     //console.log({profiledata:data});
     //console.log({GlobalsInCreateProfile: Globals});
