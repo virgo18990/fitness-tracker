@@ -16,21 +16,49 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../assets/home1.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/m1.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home3.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/m2.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home4.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/m3.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/m4.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/m5.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/m9.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/m8.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>

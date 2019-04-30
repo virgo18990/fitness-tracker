@@ -17,14 +17,14 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../assets/home1.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/h1.png" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home3.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/h2.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
@@ -32,6 +32,27 @@
       </div>
       <div class="carousel-item">
         <img src="../assets/home4.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/h3.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/h4.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/h5.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
@@ -141,10 +162,10 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -227,6 +248,13 @@ export default {
       color: white;
       padding: 15px;
     }
+
+    .carousel-item img{
+
+  width:100%;
+  height: 400px;
+
+}
     
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 1024px) {
