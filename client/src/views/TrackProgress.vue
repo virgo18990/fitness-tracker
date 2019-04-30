@@ -141,7 +141,14 @@
                 </tr>
               </table>
               
-              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+              <br/>
+
+                 <strong class="title">Your Progress</strong>
+
+           <div class="progress">
+               <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{width: myprogress.Progress + '%'}"></div>
+            </div>
+              <br/><br/><br/><br/><br/><br/><br/>
 
             </v-card-text>
           </v-card>
@@ -184,6 +191,7 @@ export default {
         Globals: Globals,
         data: {},
         myprogress: [],
+        progresspercentage: [],
         length: [],
         window: 0
     }),
@@ -194,6 +202,8 @@ export default {
         console.log({length: length});
         this.length = length;
         console.log({thisLength:this.length});
+        this.progresspercentage = this.myprogress[0].Progress;
+        console.log({progresspercentage: this.progresspercentage});
         
     }
 

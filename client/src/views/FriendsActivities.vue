@@ -152,7 +152,15 @@
                 </tr>
               </table>
               
-              <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+              <br/>
+
+                 <strong class="title">{{ friendsactivities.FirstName }}'s Progress</strong>
+
+           <div class="progress">
+               <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{width: friendsactivities.Progress + '%'}"></div>
+            </div>
+
+              <br/><br/><br/><br/><br/><br/><br/>
 
             </v-card-text>
           </v-card>
