@@ -17,21 +17,35 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../assets/home1.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/Lat1.png" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home3.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/lat3.png" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home4.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/lat4.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/lat5.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/lat6.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
@@ -132,10 +146,10 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -281,6 +295,13 @@ td {
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 5px;
+}
+
+.carousel-item img{
+
+  width:100%;
+  height: 400px;
+
 }
     
     /* On small screens, set height to 'auto' for sidenav and grid */

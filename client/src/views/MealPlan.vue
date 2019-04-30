@@ -141,10 +141,10 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -237,6 +237,13 @@ export default {
 td {
     padding-left: 5px;
     padding-right: 5px
+}
+
+.carousel-item img{
+
+  width:100%;
+  height: 400px;
+
 }
     
     /* On small screens, set height to 'auto' for sidenav and grid */

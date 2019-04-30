@@ -302,9 +302,14 @@ td {
 
   width:100%;
   height: 400px;
-  
 
 }
+
+/*.carousel-control-prev, .carousel-control-next {
+
+    outline: black;
+    background-color: rgba(0, 0, 0, 0.3);
+}*/
     
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 1024px) {

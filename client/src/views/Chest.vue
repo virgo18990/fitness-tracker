@@ -17,26 +17,55 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../assets/home1.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/Chest1.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p>.</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home3.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/Chest2.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home4.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/Chest3.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
+      <div class="carousel-item active">
+        <img src="../assets/Chest4.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p>.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/Chest5.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/Chest6.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/Chest7.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      
     </div>
     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -132,10 +161,10 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -283,6 +312,18 @@ td {
     padding-bottom: 5px;
 }
     
+.carousel-item img{
+
+  width:100%;
+  height: 400px;
+
+}
+
+/*.carousel-control-prev, .carousel-control-next {
+
+    
+    background-color: rgba(0, 0, 0, 0.3);
+}*/
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 1024px) {
       .sidenav {
