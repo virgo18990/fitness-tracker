@@ -17,21 +17,28 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../assets/home1.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/prog4.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home3.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/prog1.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="../assets/home4.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/prog2.jpg" class="d-block w-100" alt="imghome">
+        <div class="carousel-caption d-none d-md-block">
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../assets/prog3.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
@@ -164,10 +171,10 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -239,6 +246,13 @@ export default {
       background-color:#ffc107;
       color: white;
       padding: 15px;
+    }
+
+    .carousel-item img{
+
+      width:100%;
+      height: 400px;
+
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
