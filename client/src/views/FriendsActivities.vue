@@ -18,7 +18,7 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="../assets/home1.jpg" class="d-block w-100" alt="imghome">
+        <img src="../assets/friends1.jpg" class="d-block w-100" alt="imghome">
         <div class="carousel-caption d-none d-md-block">
           <h5></h5>
           <p></p>
@@ -175,10 +175,10 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
       <div class="well">
-        <p>ADS</p>
+        <p></p>
       </div>
     </div>
   </div>
@@ -260,6 +260,13 @@ export default {
         padding-right: 5px;
         padding-top: 5px;
         padding-bottom: 5px;
+    }
+
+    .carousel-item img{
+
+      width:100%;
+      height: 400px;
+
     }
    
     
