@@ -25,7 +25,9 @@
     "vuetify": "^1.5.13",
     "vue-router": "^3.0.1",
     "material-design-icons": "^3.0.1",
-    "material-design-icons-iconfont": "^4.0.5"
+    "material-design-icons-iconfont": "^4.0.5",
+    "typehead": "^0.0.1",
+    "jquery-typeahead": "^2.10.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

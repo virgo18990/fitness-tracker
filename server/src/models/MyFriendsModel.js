@@ -66,13 +66,28 @@ const myfriendsmodel = {
 
       /*Displays results only if the searched friend does not already exists in MyFriends table
       Irrespective of request status(New/Pending/Accepted)*/
-      async searchfriend(input){
+      /*async searchfriend(input){
 
         return await conn.query("select u.FirstName, u.LastName, u.Email FROM saxenap1_db.Users u"
-        +" where u.Email=? and u.Email NOT IN"
+        +" where u.Email =? and u.Email NOT IN"
         +" (select distinct m.Request_From from saxenap1_db.MyFriends m"
         +" UNION"
         +" select distinct m.Request_To from saxenap1_db.MyFriends m)" , input.searchemail);
+        
+      },*/
+
+      //FINAL EXAM
+
+      /*Displays results only if the searched friend does not already exists in MyFriends table
+      Irrespective of request status(New/Pending/Accepted)*/
+      // Recreated to use typeahead
+      async searchfriend(input){
+       
+        return await conn.query("select u.FirstName, u.LastName, u.Email FROM saxenap1_db.Users u"
+        +" where u.Email like ? and u.Email NOT IN"
+        +" (select distinct m.Request_From from saxenap1_db.MyFriends m"
+        +" UNION"
+        +" select distinct m.Request_To from saxenap1_db.MyFriends m)" , `%${input.searchemail}%`);
         
       },
 

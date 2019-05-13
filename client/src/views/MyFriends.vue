@@ -7,12 +7,17 @@
        <h6>Add Friends</h6>
         <br/>
 
-       <div>
+     <div>
            <input for="Search" type="text" class="form-control" id="Search" name="Search" v-model='data.Search' placeholder="Search">
            <br/>
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary" @click.prevent="search(data.Search)">Search</button>
            <br/>
        </div>
+
+       <!-- <div>
+           <input class="typeahead tt-query" spellcheck="false" autocomplete="off" name="typeahead" type="text" v-model='data.typeahead'/>
+       </div>-->
+
         <br/>
         <div class="well">
           
@@ -141,9 +146,19 @@
 import { bootstrap } from "bootstrap";
 import { js } from "../../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
+//import { jquery } from "../../node_modules/jquery/dist/jquery.min.js";
+import { typeahead } from "../../node_modules/jquery-typeahead/dist/jquery.typeahead.min.js";
 import { Globals } from "@/models/api.js";
 import { GetFriends, PendingRequests, AcceptFriendRequest, RejectFriendRequest, SearchFriend, SendRequest, RemoveFriend } from "@/models/users.js";
 import toastr from 'toastr';
+
+/*$(document).ready(function(){
+$('data.typeahead').typeahead({
+name: 'typeahead',
+remote: 'http://localhost:8080/MyFriendsController/SearchFriend?key=%QUERY',
+limit: 10
+});
+});*/
 
 export default {
     
