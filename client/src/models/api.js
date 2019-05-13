@@ -1,5 +1,7 @@
 const API_ROOT = process.env.API_ROOT || "http://localhost:8081/";
 
+const webpack = require ('webpack');
+
 export const Globals = {
     user: null,
     errors: [],
